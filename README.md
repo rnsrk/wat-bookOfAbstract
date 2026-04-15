@@ -1,45 +1,45 @@
-# WissKI User Meeting — book of abstracts (LaTeX template)
+# WissKI-Nutzertreffen — Book of Abstract (LaTeX-Vorlage)
 
-LaTeX template for extended abstracts in a book-of-abstracts style: title, authors with superscript affiliations, sections, footnotes, citations (BibTeX + `natbib`), block and inline quotations, figures, tables, and hyperlinks.
+LaTeX-Vorlage für \emph{Extended Abstracts} für den Eigennamen \emph{Book of Abstract} (englische Bezeichnung bewusst nicht eingedeutscht): Titel, Autorinnen und Autoren mit hochgestellten Affiliations-Markern, Abschnitte, Fußnoten, Literatur (BibTeX + `natbib`), Block- und Inline-Zitate, Abbildungen, Tabellen und Hyperlinks. **Sprache der Beispieltexte:** Deutsch (modernes **babel** mit `\babelprovide[import, main]{german}` in `main.tex` — kompatibel mit Babel ab ca. Version 24 / TeX Live 2024ff.).
 
-**License:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) (see `LICENSE`).
+**Lizenz:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.de) (siehe `LICENSE`).
 
-## Use on Overleaf (import from GitHub)
+## Nutzung in Overleaf (Import von GitHub)
 
-1. Push this repository to **GitHub** (public or private, depending on your needs).
-2. In Overleaf: **New project** → **Import project** → **From GitHub**.
-3. Authorize GitHub if prompted, then select this repository.
-4. After import, set **Main document** to `main.tex` if Overleaf did not pick it automatically: **Menu** → **Main document** → `main.tex`.
-5. **Menu** → **Compiler** → **pdfLaTeX** (recommended; matches this template).
-6. Click **Recompile**. The first run may need two compiles for references; Overleaf’s **latexmk** (with the included `latexmkrc`) runs BibTeX when needed.
+1. Dieses Repository auf **GitHub** legen (öffentlich oder privat).
+2. In Overleaf: **Neues Projekt** → **Projekt importieren** → **Von GitHub**.
+3. GitHub ggf. autorisieren und das Repository auswählen.
+4. **Hauptdokument** auf `main.tex` stellen, falls nicht automatisch: **Menü** → **Hauptdokument** → `main.tex`.
+5. **Menü** → **Compiler** → **pdfLaTeX** (empfohlen; entspricht dieser Vorlage).
+6. **Recompile**. Literatur und Querverweise können zwei Durchläufe brauchen; Overleafs **latexmk** (mit `latexmkrc`) startet BibTeX bei Bedarf.
 
-### Optional: publish as an Overleaf gallery template
+### Optional: Overleaf-Galerie
 
-Gallery submission is done in the Overleaf UI (not via GitHub alone): open the project on Overleaf and follow their **Submit** / gallery template workflow. This repo is structured so that import and compilation work the same way as common gallery projects (`main.tex`, `references.bib`, `README.md`, `LICENSE`).
+Einreichen über die Overleaf-Oberfläche (nicht allein über GitHub): im Projekt den Workflow für **Vorlagen / Galerie** nutzen. Struktur entspricht üblichen Galerie-Projekten (`main.tex`, `references.bib`, `README.md`, `LICENSE`).
 
-### Optional: “Use this template” on GitHub
+### Optional: GitHub „Use this template“
 
-In the GitHub repository: **Settings** → **General** → enable **Template repository**. Others can then generate a new repo from yours with one click, which pairs well with Overleaf imports.
+Im Repository: **Settings** → **General** → **Template repository** aktivieren. Andere können dann mit einem Klick ein neues Repo anlegen — gut kombinierbar mit Overleaf-Import.
 
-## Project layout
+## Projektaufbau
 
-| File / folder   | Role |
-|-----------------|------|
-| `main.tex`      | Main LaTeX source (set as main document in Overleaf). |
-| `references.bib`| Example BibTeX database. |
-| `img/`          | Put figure files here; `\graphicspath{{img/}}` is set in `main.tex`. |
-| `latexmkrc`     | `latexmk` / Overleaf: pdfLaTeX + BibTeX. |
-| `Makefile`      | Optional local build with `make`. |
+| Datei / Ordner   | Rolle |
+|------------------|--------|
+| `main.tex`       | Hauptquelle (in Overleaf als Hauptdokument setzen). |
+| `references.bib` | Beispiel-BibTeX-Datenbank. |
+| `img/`           | Abbildungen; `\graphicspath{{img/}}` in `main.tex`. |
+| `latexmkrc`      | `latexmk` / Overleaf: pdfLaTeX + BibTeX. |
+| `Makefile`       | Optional: lokaler Build mit `make`. |
 
-## Local build
+## Lokaler Build
 
-With `latexmk` (recommended):
+Mit `latexmk` (empfohlen):
 
 ```bash
 latexmk -pdf main.tex
 ```
 
-Or manually:
+Oder manuell:
 
 ```bash
 pdflatex main.tex
@@ -48,23 +48,23 @@ pdflatex main.tex
 pdflatex main.tex
 ```
 
-With GNU Make:
+Mit GNU Make:
 
 ```bash
 make
 ```
 
-## Fonts
+## Schrift
 
-On full TeX installations (including Overleaf), if the `noto` package is present, **Noto Sans** is used as the sans-serif body font. Otherwise the template falls back to the default Computer Modern sans bundle.
+Ist das Paket **noto** installiert (u.\,a. typisch auf Overleaf), wird **Noto Sans** als serifenlose Hauptschrift genutzt. Sonst greift die Vorlage auf die Standard-Sans der Distribution zurück.
 
-## Git: ignore compiled files, or keep a PDF for preview?
+## Git: Kompilate ignorieren oder PDF zur Vorschau versionieren?
 
-**Recommended for this template (current `.gitignore`):** ignore **all** generated files, including **`main.pdf`**. Clones stay small, diffs stay readable, and **Overleaf** (or `make` / `latexmk`) always produces a fresh PDF from `main.tex`.
+**Empfehlung (aktuell in `.gitignore`):** alle erzeugten Dateien ignorieren, einschließlich **`main.pdf`**. Klone bleiben klein, Diffs lesbar; **Overleaf** (oder `make` / `latexmk`) erzeugt das PDF stets aus `main.tex`.
 
-**If you want a preview PDF on GitHub:** remove the `*.pdf` line from `.gitignore`, run `make` (or compile in Overleaf and download `main.pdf`), then **commit `main.pdf`**. Refresh that file whenever the layout changes so the preview stays accurate. Auxiliary files (`.aux`, `.log`, `.bbl`, …) should stay ignored.
+**PDF-Vorschau auf GitHub:** Zeile `*.pdf` in `.gitignore` entfernen, `make` ausführen (oder in Overleaf kompilieren und `main.pdf` herunterladen), **`main.pdf` committen**. Bei Layout-Änderungen PDF neu bauen und erneut committen. Hilfsdateien (`.aux`, `.log`, `.bbl`, …) weiter ignorieren.
 
-## Customization
+## Anpassung
 
-- Edit title, authors, affiliations (`\date` block), and body in `main.tex`.
-- Add or change bibliography entries in `references.bib`; keep `\bibliography{references}` in sync with the `.bib` filename (without extension).
+- Titel, Autorinnen/Autoren, Affiliationen (Block `\date`) und Fließtext in `main.tex` bearbeiten.
+- Literatur in `references.bib` pflegen; `\bibliography{references}` muss zum Dateinamen der `.bib` passen (ohne Endung).

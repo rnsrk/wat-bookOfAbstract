@@ -1,4 +1,4 @@
-# Compiled LaTeX / BibTeX outputs — safe to ignore everywhere (Overleaf rebuilds them).
+# LaTeX-/BibTeX-Ausgaben — überall ignorieren (Overleaf erzeugt sie neu).
 *.aux
 *.bbl
 *.bcf
@@ -17,8 +17,8 @@
 *.vrb
 *.xdv
 
-# Built PDF: ignored by default (smaller repo, no merge noise). For a GitHub “preview”
-# PDF in the tree, delete the next line and commit main.pdf (rebuild before pushing).
+# PDF: standardmäßig ignorieren (kleines Repo). Für GitHub-Vorschau: nächste Zeile
+# löschen, main.pdf bauen und committen (vor dem Push neu kompilieren).
 *.pdf
 
 # Editor / OS

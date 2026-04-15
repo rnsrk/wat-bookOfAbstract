@@ -1,121 +1,134 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% WissKI User Meeting — book of abstracts (extended abstract) template
+% WissKI-Nutzertreffen — Vorlage für das Book of Abstract (Extended Abstract)
 %
-% Overleaf (import from GitHub):
-%   New project → Import project → From GitHub → paste the repository URL
-%   Main document: main.tex (Project menu → Main document, if needed)
-%   Compiler: pdfLaTeX (Menu → Compiler)
+% Overleaf (Import von GitHub):
+%   Neues Projekt → Projekt importieren → Von GitHub → Repository-URL einfügen
+%   Hauptdokument: main.tex (Menü → Hauptdokument, falls nötig)
+%   Compiler: pdfLaTeX (Menü → Compiler)
 %
-% Local build: latexmk -pdf main.tex   or   make
+% Lokal: latexmk -pdf main.tex   oder   make
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[a4paper,11pt]{article}
 
 \usepackage[margin=2.5cm]{geometry}
 
-% Prefer Noto Sans when available (Overleaf TeX Live); otherwise CM sans
+% Noto Sans, falls installiert (u.\,a. Overleaf-TeX\,Live); sonst Standard-Sans
 \IfFileExists{noto.sty}{%
   \usepackage[sfdefault]{noto}%
 }{%
   \renewcommand{\familydefault}{\sfdefault}%
 }
 \usepackage[T1]{fontenc}
+% Babel 24+: Sprache per \babelprovide (Paketoptionen [german]/[ngerman] sind hier unzuverlässig)
+\usepackage{babel}
+\babelprovide[import, main]{german}
 
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{url}
 \usepackage{natbib}
 \usepackage{hyperref}
-\hypersetup{colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=black}
+\hypersetup{%
+  colorlinks=true,
+  linkcolor=black,
+  urlcolor=blue,
+  citecolor=black,
+  pdftitle={WissKI Abstract-Vorlage},
+  pdfsubject={Extended Abstract, Book of Abstract, WissKI-Nutzertreffen}%
+}
 
 \graphicspath{{img/}}
 
-\title{Title of the Abstract for WissKI User Meeting}
+% Überschrift der Bibliographie bei article
+\renewcommand{\refname}{Literatur}
+
+\title{Titel des Beitrags zum \emph{Book of Abstract} des WissKI-Nutzertreffens}
 
 \author{%
-    First Author\textsuperscript{1}\thanks{Corresponding author: \url{email@example.com}}
+    Erste Autorin\textsuperscript{1}\thanks{Korrespondierende Autorin: \url{email@beispiel.de}}
     \and
-    Second Author\textsuperscript{2}%
+    Zweiter Autor\textsuperscript{2}%
 }
 
 \date{%
     \vspace{-1em}
     \small\itshape
-    \textsuperscript{1}Institution A, City, Country \\
-    \textsuperscript{2}Institution B, City, Country%
+    \textsuperscript{1}Institution A, Stadt \\
+    \textsuperscript{2}Institution B, Stadt%
 }
 
 \begin{document}
 
 \maketitle
 
-This is the extended abstract for the WissKI User Meeting. The entire document serves as the abstract, summarizing the main contributions and findings of the presented work.
+Dieser Text ist das \emph{Extended Abstract} für das WissKI-Nutzertreffen und richtet sich an das \emph{Book of Abstract}. Das gesamte Dokument entspricht dem Abstract; es fasst die wichtigsten Beiträge und Ergebnisse der Arbeit zusammen.
 
-\section{Introduction}
-This is an introduction section demonstrating headings. WissKI (Wissenschaftliche KommunikationsInfrastruktur) is a great tool, and this template serves as a starting point for conference abstracts. You can include footnotes like this\footnote{This is a sample footnote.}.
+\section{Einleitung}
+Die Einleitung zeigt die Gliederung. WissKI (\emph{Wissenschaftliche KommunikationsInfrastruktur}) dient als Beispielthema; die Vorlage ist ein Ausgangspunkt für Konferenz-Abstracts. Fußnoten sind möglich\footnote{Beispiel für eine Fußnote.}.
 
-\section{Main Content}
-Here we demonstrate various elements requested for the template.
+\section{Inhalt}
+Im Folgenden sind typische Bausteine der Vorlage skizziert.
 
-\subsection{Citations}
-You can cite an article \cite{Abril07}, a book \cite{Kosiur01}, an internet document \cite{Thornburg01}, or a collection \cite{Spector90}.
+\subsection{Zitate (Literaturverweise)}
+Verweise auf einen Artikel \cite{Abril07}, ein Buch \cite{Kosiur01}, eine Online-Ressource \cite{Thornburg01} oder einen Sammelband \cite{Spector90}.
 
-\subsection{Block quotations}
-For a passage of more than a few words, set it off with the \texttt{quote} environment (narrower margins, often used with slightly smaller type). Place the citation after the closing quotation marks, before the final period if your style requires it.
+\subsection{Blockzitate}
+Längere wörtliche Übernahmen setzt man mit der Umgebung \texttt{quote} (schmalere Zeilen, oft mit etwas kleinerer Schrift). Die Quelle kann am Ende in eckigen Klammern stehen (Zitationsstil beachten).
 
 \begin{quote}\small
-``Understanding policy-based networking requires a clear model of how rules are applied across distributed systems.'' \cite{Kosiur01}
+\glqq Drupal als Framework bietet Extension Points, über die sich \emph{RDF}-basierte Pipelines nahtlos in bestehende Sammlungskataloge einbinden lassen.\grqq{} \cite{Kosiur01}
 \end{quote}
 
-For a longer extract with one or more paragraphs, use \texttt{quotation} instead (first-line indentation for each paragraph):
+Für mehrere Absätze im Block eignet sich \texttt{quotation} (Einzug am Absatzanfang):
 
 \begin{quotation}\small
-This is the first paragraph of a block quotation. It can run over several sentences.
+Dies ist der erste Absatz eines Blockzitats über mehrere Sätze.
 
-This is a second paragraph in the same block. End the block with the source \cite{Spector90}.
+Dies ist ein zweiter Absatz im selben Block. Am Ende folgt die Quelle \cite{Spector90}.
 \end{quotation}
 
-\subsection{Inline quotations}
-Short phrases in running text use \LaTeX{} ``curly'' opening and closing quotes (two backticks, two apostrophes). Example: Kosiur writes that ``policy-based networking'' ties configuration to business rules \cite{Kosiur01}.
+\subsection{Inline-Zitate}
+Kurze wörtliche Rede im Fließtext verwendet deutsche Anführungszeichen mit \verb|\glqq| und \verb|\grqq| (siehe Präambel: \verb|\babelprovide[import, main]{german}|). Beispiel: Musterfrau und Mustermann betonen die \glqq Ontologieintegration\grqq{} als zentrales Bindeglied zwischen CMS und Triple Store \cite{Kosiur01}.
 
-For a quotation inside a quotation, switch to single quotes on the inner span: ``He replied, `not yet', and closed the issue.''
+Verschachtelte Zitate innen mit \verb|\glq| und \verb|\grq|: \glqq Er antwortete: \glq Noch nicht\grq{} und schloss den Vorgang.\grqq
 
-\subsection{Images and Figures}
-Place image files under \texttt{img/} (see \texttt{README.md}). Uncomment the line below to include a real figure.
+\subsection{Abbildungen}
+Grafikdateien liegen unter \texttt{img/} (siehe \texttt{README.md}). Die folgende Zeile auskommentieren, um eine echte Abbildung einzubinden.
 
 \begin{figure}[ht]
     \centering
-    % \includegraphics[width=0.5\linewidth]{your-image}
+    % \includegraphics[width=0.5\linewidth]{dein-bild}
     \rule{4cm}{3cm}
-    \caption{A sample figure placeholder.}
+    \caption{Platzhalter für eine Beispielabbildung.}
     \label{fig:sample}
 \end{figure}
 
-\subsection{Tables}
-Tables can be formatted with the \texttt{booktabs} package.
+\subsection{Tabellen}
+Tabellen lassen sich mit dem Paket \texttt{booktabs} sauber formatieren.
 
 \begin{table}[ht]
     \centering
-    \caption{A sample table showing data.}
+    \caption{Beispieltabelle mit Daten.}
     \label{tab:sample}
     \begin{tabular}{llr}
         \toprule
-        \textbf{Component} & \textbf{Description} & \textbf{Quantity} \\
+        \textbf{Komponente} & \textbf{Beschreibung} & \textbf{Anzahl} \\
         \midrule
-        WissKI & Core System & 1 \\
-        Drupal & CMS Backend & 1 \\
-        Ontology & Data Model & \textit{n} \\
+        WissKI & Kernsystem & 1 \\
+        Drupal & CMS-Backend & 1 \\
+        Ontologie & Datenmodell & \textit{n} \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-\subsection{Links and URLs}
-With \texttt{hyperref} loaded, you can show a readable label while linking to a target: \href{https://wiss-ki.eu/}{WissKI project website}. For email, use \href{mailto:contact@example.com}{contact@example.com}.
+\subsection{Links und URLs}
+Mit \texttt{hyperref} verlinkt man lesbare Texte: \href{https://wiss-ki.eu/}{Website des WissKI-Projekts}. Für E-Mail: \href{mailto:kontakt@beispiel.de}{kontakt@beispiel.de}.
 
-To print the address itself (monospace, line-break friendly), use \verb|\url|: \url{https://wiss-ki.eu/documentation}. For a URL that should not become a clickable link in print (rare), you can use \texttt{\textbackslash nolinkurl\{...\}} from the \texttt{url} package: \nolinkurl{https://example.org/path}.
+Die Adresse direkt und umbrechbar setzen: \verb|\url| — \url{https://wiss-ki.eu/documentation}. Soll eine URL im Druck \emph{nicht} klickbar sein (selten): \texttt{\textbackslash nolinkurl\{...\}} aus dem Paket \texttt{url}: \nolinkurl{https://example.org/pfad}.
 
-\section{Conclusion}
-This concludes the sample template.
+\section{Schlussbemerkung}
+Damit endet die Beispielvorlage für das \emph{Book of Abstract}.
 
 \bibliographystyle{plain}
 \bibliography{references}

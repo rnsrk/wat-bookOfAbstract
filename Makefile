@@ -1,4 +1,4 @@
-# Local build: pdfLaTeX + BibTeX (same engine as Overleaf default)
+# Lokaler Build: pdfLaTeX + BibTeX (wie Overleaf-Standard)
 MAIN = main
 PDFLATEX = pdflatex
 FLAGS = -interaction=nonstopmode -file-line-error
