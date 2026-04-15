@@ -19,7 +19,7 @@
 
 # PDF: standardmäßig ignorieren (kleines Repo). Für GitHub-Vorschau: nächste Zeile
 # löschen, main.pdf bauen und committen (vor dem Push neu kompilieren).
-*.pdf
+main.pdf
 
 # Editor / OS
 *~
