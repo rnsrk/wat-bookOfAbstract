@@ -1,0 +1,27 @@
+# Compiled LaTeX / BibTeX outputs — safe to ignore everywhere (Overleaf rebuilds them).
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.nav
+*.out
+*.run.xml
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+*.xdv
+
+# Built PDF: ignored by default (smaller repo, no merge noise). For a GitHub “preview”
+# PDF in the tree, delete the next line and commit main.pdf (rebuild before pushing).
+*.pdf
+
+# Editor / OS
+*~
+.DS_Store
+Thumbs.db
