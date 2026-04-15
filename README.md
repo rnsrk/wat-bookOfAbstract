@@ -29,17 +29,30 @@ Im Repository: **Settings** → **General** → **Template repository** aktivier
 | `references.bib` | Beispiel-BibTeX-Datenbank. |
 | `img/`           | Abbildungen; `\graphicspath{{img/}}` in `main.tex`. |
 | `latexmkrc`      | `latexmk` / Overleaf: pdfLaTeX + BibTeX. |
-| `Makefile`       | Optional: lokaler Build mit `make`. |
+| `Makefile`       | Lokaler Build mit `make` (nur `pdflatex` + `bibtex`, kein `latexmk`). |
 
 ## Lokaler Build
 
-Mit `latexmk` (empfohlen):
+Voraussetzungen: **`pdflatex`** und **`bibtex`** (typisch über das TeX-Live-Metapaket der Distribution). **`latexmk`** ist oft eine **eigene** Paketauswahl und fehlt bei Minimalinstallationen — dann meldet die Shell z. B. „Unknown command: latexmk“. Nachinstallieren:
+
+- **Debian / Ubuntu:** `sudo apt install latexmk`
+- **Arch Linux** (u. a. Manjaro, CachyOS): `sudo pacman -S texlive-binextra`
+
+Danach ggf. neues Terminal oder neu einloggen.
+
+Mit `latexmk` (empfohlen, wenn installiert; nutzt `latexmkrc` wie Overleaf):
 
 ```bash
 latexmk -pdf main.tex
 ```
 
-Oder manuell:
+Ohne `latexmk` — **GNU Make** (entspricht der `Makefile`-Kette):
+
+```bash
+make
+```
+
+Oder dieselbe Kette manuell:
 
 ```bash
 pdflatex main.tex
@@ -48,11 +61,7 @@ pdflatex main.tex
 pdflatex main.tex
 ```
 
-Mit GNU Make:
-
-```bash
-make
-```
+Hinweis: Wer TeX Live **manuell** in den Benutzerordner installiert, muss das passende **`bin`**-Verzeichnis in der **`PATH`** der Shell eintragen. Ist `pdflatex` bereits per Distributionspaket verfügbar (z. B. Debian: `texlive-latex-base` / Arch: `texlive-bin`), ist dafür in der Regel **kein** zusätzliches `source`-Setup nötig — fehlendes `latexmk` behebt man durch das passende Zusatzpaket oder durch `make`.
 
 ## Schrift
 
