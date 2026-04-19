@@ -26,6 +26,8 @@
 
 \usepackage{parskip}
 \makeatletter
+\def\footnoterule{\kern-3\p@ \hrule\@width 2in \kern 6\p@}
+\def\@makefntext#1{\noindent\@makefnmark\enskip#1}
 \renewenvironment{quotation}
   {\list{}{\listparindent\z@\itemindent\z@\rightmargin\leftmargin\parsep\z@\@plus\p@}\item\relax}
   {\endlist}
@@ -34,9 +36,10 @@
 \usepackage{titlesec}
 \titleformat{\section}{\normalsize\sffamily\bfseries}{\thesection}{1em}{\MakeTextUppercase}
 \titleformat{\subsection}{\normalsize\sffamily\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalsize\sffamily}{\thesubsubsection}{1em}{}
 
 \usepackage{listings}
-\lstset{basicstyle=\small\ttfamily, frame=single, breaklines=true, columns=flexible, captionpos=b, xleftmargin=\leftmargini, xrightmargin=\leftmargini}
+\lstset{basicstyle=\small\ttfamily, frame=single, breaklines=true, columns=flexible, captionpos=b, xleftmargin=\leftmargini, xrightmargin=\leftmargini, aboveskip=\bigskipamount, belowskip=\bigskipamount}
 
 \usepackage{graphicx}
 \usepackage{booktabs}
@@ -55,6 +58,7 @@
 
 \graphicspath{{img/}}
 \addto\captionsgerman{\renewcommand{\figureautorefname}{Abbildung}}
+\renewcommand{\lstlistingname}{Quelltext}
 
 % Überschrift der Bibliographie bei article
 \renewcommand{\refname}{Literatur}
@@ -84,7 +88,7 @@ Dieser Text ist das \emph{Extended Abstract} für das WissKI-Anwender*innentreff
 Die Einleitung zeigt die Gliederung. WissKI (\emph{Wissenschaftliche KommunikationsInfrastruktur}) dient als Beispielthema; die Vorlage ist ein Ausgangspunkt für Konferenz-Abstracts. Fußnoten sind möglich\footnote{Beispiel für eine Fußnote.}.
 
 \section{Inhalt}
-Im Folgenden sind typische Bausteine der Vorlage skizziert.
+Im Folgenden sind typische Bausteine der Vorlage skizziert. Fußnoten sind immer noch möglich\footnote{Beispiel für eine weitere Fußnote, die mehr Text haben sollte, damit man einen Zeilenumbruch in der FUßnoten-Sektion forcieren kann und das Layout prüfen kann.}.
 
 \subsection{Zitate (Literaturverweise)}
 Verweise auf einen Artikel \cite{Abril07}, ein Buch \cite{Kosiur01}, eine Online-Ressource \cite{Thornburg01} oder einen Sammelband \cite{Spector90}.
@@ -100,7 +104,7 @@ Dies ist ein zweiter Absatz im selben Block. Am Ende [...] folgt die Quelle \cit
 
  Für Quellcode-Abschnitte steht die \texttt{lstlisting}-Umgebung aus dem Paket \texttt{listings} zur Verfügung:
 
-\begin{lstlisting}[language=Python, caption={Beispiel einer Python-Funktion}]
+\begin{lstlisting}[language=Python, caption={Beispiel einer Python-Funktion.}]
 # SPARQL-Abfrage an einen WissKI-Triplestore
 def query_endpoint(endpoint, sparql):
     result = endpoint.query(sparql)
@@ -133,8 +137,6 @@ Tabellen lassen sich mit dem Paket \texttt{booktabs} sauber formatieren.
 
 \begin{table}[ht]
     \centering
-    \caption{Beispieltabelle mit Daten.}
-    \label{tab:sample}
     \begin{tabular}{llr}
         \toprule
         \textbf{Komponente} & \textbf{Beschreibung} & \textbf{Anzahl} \\
@@ -144,12 +146,44 @@ Tabellen lassen sich mit dem Paket \texttt{booktabs} sauber formatieren.
         Ontologie & Datenmodell & \textit{n} \\
         \bottomrule
     \end{tabular}
+    \caption{Beispieltabelle mit Daten.}
+    \label{tab:sample}
 \end{table}
 
 \subsection{Links und URLs}
 Mit \texttt{hyperref} verlinkt man lesbare Texte: \href{https://wiss-ki.eu/}{Website des WissKI-Projekts}. Für E-Mail: \href{mailto:kontakt@beispiel.de}{kontakt@beispiel.de}.
 
 Die Adresse direkt und umbrechbar setzen: \verb|\url| — \url{https://wiss-ki.eu/documentation}. Soll eine URL im Druck \emph{nicht} klickbar sein (selten): \texttt{\textbackslash nolinkurl\{...\}} aus dem Paket \texttt{url}: \nolinkurl{https://example.org/pfad}.
+
+\section{Literaturangaben}
+
+\subsection{Einträge in der Bibliographiedatei}
+
+Alle zitierten Quellen werden in der Datei \texttt{references.bib} gepflegt. Jeder Eintrag beginnt mit einem Typ und einem frei wählbaren Schlüssel, über den im Text zitiert wird.
+
+\subsubsection{Häufige Eintragstypen}
+
+Die gebräuchlichsten Typen sind \texttt{@article} (Zeitschriftenartikel), \texttt{@book} (Monographie), \texttt{@inproceedings} (Konferenzbeitrag) und \texttt{@online} (Webressource). Beispiel:
+
+\begin{lstlisting}[language={}, caption={Beispieleintrag in references.bib}]
+@article{MusterMann2024,
+  author  = {Musterfrau, Ada and Mustermann, Max},
+  title   = {Ontologien in WissKI},
+  journal = {Digital Humanities Quarterly},
+  year    = {2024},
+  volume  = {18},
+  number  = {2},
+  pages   = {1--15}
+}
+\end{lstlisting}
+
+\subsubsection{Pflichtfelder}
+
+Jeder Typ erfordert bestimmte Felder: \texttt{@article} benötigt mindestens \texttt{author}, \texttt{title}, \texttt{journal} und \texttt{year}; \texttt{@book} benötigt \texttt{author} oder \texttt{editor}, \texttt{title}, \texttt{publisher} und \texttt{year}. Fehlende Pflichtfelder erzeugen eine BibTeX-Warnung.
+
+\subsection{Zitieren im Text}
+
+Mit \verb|\cite{Schlüssel}| wird eine Quelle im Text zitiert: \cite{Kosiur01}. Mehrere Quellen lassen sich in einem Befehl zusammenfassen: \verb|\cite{Key1,Key2}|. Das Paket \texttt{natbib} (hier mit Option \texttt{numbers} geladen) stellt zusätzlich \verb|\citep{}| für Klammerzitate und \verb|\citet{}| für Textzitate bereit.
 
 \section{Schlussbemerkung}
 Damit endet die Beispielvorlage für das \emph{Book of Abstract}.
