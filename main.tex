@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% WissKI-Nutzertreffen — Vorlage für das Book of Abstract (Extended Abstract)
+% WissKI-Anwender*innentreffen — Vorlage für das Book of Abstract (Extended Abstract)
 %
 % Overleaf (Import von GitHub):
 %   Neues Projekt → Projekt importieren → Von GitHub → Repository-URL einfügen
@@ -12,6 +12,7 @@
 \documentclass[a4paper,11pt]{article}
 
 \usepackage[margin=2.5cm]{geometry}
+\usepackage[T1]{fontenc}
 
 % Noto Sans, falls installiert (u.\,a. Overleaf-TeX\,Live); sonst Standard-Sans
 \IfFileExists{noto.sty}{%
@@ -19,15 +20,23 @@
 }{%
   \renewcommand{\familydefault}{\sfdefault}%
 }
-\usepackage[T1]{fontenc}
 % Babel 24+: Sprache per \babelprovide (Paketoptionen [german]/[ngerman] sind hier unzuverlässig)
 \usepackage{babel}
 \babelprovide[import, main]{german}
 
+\usepackage{textcase}
+\usepackage{titlesec}
+\titleformat{\section}{\normalsize\sffamily\bfseries}{\thesection}{1em}{\MakeTextUppercase}
+\titleformat{\subsection}{\normalsize\sffamily\bfseries}{\thesubsection}{1em}{}
+
+\usepackage{listings}
+\lstset{basicstyle=\small\ttfamily, frame=single, breaklines=true, columns=flexible}
+
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{url}
-\usepackage{natbib}
+\usepackage[numbers]{natbib}
+\usepackage{orcidlink}
 \usepackage{hyperref}
 \hypersetup{%
   colorlinks=true,
@@ -35,7 +44,7 @@
   urlcolor=blue,
   citecolor=black,
   pdftitle={WissKI Abstract-Vorlage},
-  pdfsubject={Extended Abstract, Book of Abstract, WissKI-Nutzertreffen}%
+  pdfsubject={Extended Abstract, Book of Abstract, WissKI User Meeting}%
 }
 
 \graphicspath{{img/}}
@@ -43,26 +52,26 @@
 % Überschrift der Bibliographie bei article
 \renewcommand{\refname}{Literatur}
 
-\title{Titel des Beitrags zum \emph{Book of Abstract} des WissKI-Nutzertreffens}
+\title{Titel des Beitrags zum \emph{Book of Abstract} des WissKI-Anwender*innentreffens}
 
-\author{%
-    Erste Autorin\textsuperscript{1}\thanks{Korrespondierende Autorin: \url{email@beispiel.de}}
-    \and
-    Zweiter Autor\textsuperscript{2}%
+\author{
+    Vorname Nachname \orcidlink{0000-0000-0000-0000} \\
+    \small email.adresse@replaceme.com \\
+    \small Institution der Autor*innen, Stadt \\[0.5cm]
+    Vorname Nachname \orcidlink{0000-0000-0000-0001} \\
+    \small email.adresse@replaceme.com \\
+    \small Institution der Autor*innen, Stadt
 }
-
-\date{%
-    \vspace{-1em}
-    \small\itshape
-    \textsuperscript{1}Institution A, Stadt \\
-    \textsuperscript{2}Institution B, Stadt%
-}
+\date{}
 
 \begin{document}
 
 \maketitle
 
-Dieser Text ist das \emph{Extended Abstract} für das WissKI-Nutzertreffen und richtet sich an das \emph{Book of Abstract}. Das gesamte Dokument entspricht dem Abstract; es fasst die wichtigsten Beiträge und Ergebnisse der Arbeit zusammen.
+\begin{abstract}
+Eine kurze Zusammenfassung des nachfolgenden Abstracts für Ihre Einreichung zum WissKI-Anwender*innentreffen 2026 (maximal 10 Zeilen).
+Dieser Text ist das \emph{Extended Abstract} für das WissKI-Anwender*innentreffen und richtet sich an das \emph{Book of Abstract}. Das gesamte Dokument entspricht dem Abstract; es fasst die wichtigsten Beiträge und Ergebnisse der Arbeit zusammen.
+\end{abstract}
 
 \section{Einleitung}
 Die Einleitung zeigt die Gliederung. WissKI (\emph{Wissenschaftliche KommunikationsInfrastruktur}) dient als Beispielthema; die Vorlage ist ein Ausgangspunkt für Konferenz-Abstracts. Fußnoten sind möglich\footnote{Beispiel für eine Fußnote.}.
@@ -73,14 +82,8 @@ Im Folgenden sind typische Bausteine der Vorlage skizziert.
 \subsection{Zitate (Literaturverweise)}
 Verweise auf einen Artikel \cite{Abril07}, ein Buch \cite{Kosiur01}, eine Online-Ressource \cite{Thornburg01} oder einen Sammelband \cite{Spector90}.
 
-\subsection{Blockzitate}
-Längere wörtliche Übernahmen setzt man mit der Umgebung \texttt{quote} (schmalere Zeilen, oft mit etwas kleinerer Schrift). Die Quelle kann am Ende in eckigen Klammern stehen (Zitationsstil beachten).
-
-\begin{quote}\small
-\glqq Drupal als Framework bietet Extension Points, über die sich \emph{RDF}-basierte Pipelines nahtlos in bestehende Sammlungskataloge einbinden lassen.\grqq{} \cite{Kosiur01}
-\end{quote}
-
-Für mehrere Absätze im Block eignet sich \texttt{quotation} (Einzug am Absatzanfang):
+\subsection{Blockzitate und Code}
+Längere wörtliche Übernahmen werden als eingerückter Block ohne Anführungszeichen gesetzt (Umgebung \texttt{quotation}).
 
 \begin{quotation}\small
 Dies ist der erste Absatz eines Blockzitats über mehrere Sätze.
@@ -88,10 +91,23 @@ Dies ist der erste Absatz eines Blockzitats über mehrere Sätze.
 Dies ist ein zweiter Absatz im selben Block. Am Ende folgt die Quelle \cite{Spector90}.
 \end{quotation}
 
+ Für Quellcode-Abschnitte steht die \texttt{lstlisting}-Umgebung aus dem Paket \texttt{listings} zur Verfügung:
+
+\begin{lstlisting}[language=Python, caption={Beispiel einer Python-Funktion}]
+# SPARQL-Abfrage an einen WissKI-Triplestore
+def query_endpoint(endpoint, sparql):
+    result = endpoint.query(sparql)
+    return result
+\end{lstlisting}
+
+Die Sprache wird über \texttt{language=...} angegeben (z.\,B. \texttt{Python}, \texttt{SQL}, \texttt{XML}, \texttt{bash}).
+
 \subsection{Inline-Zitate}
 Kurze wörtliche Rede im Fließtext verwendet deutsche Anführungszeichen mit \verb|\glqq| und \verb|\grqq| (siehe Präambel: \verb|\babelprovide[import, main]{german}|). Beispiel: Musterfrau und Mustermann betonen die \glqq Ontologieintegration\grqq{} als zentrales Bindeglied zwischen CMS und Triple Store \cite{Kosiur01}.
 
 Verschachtelte Zitate innen mit \verb|\glq| und \verb|\grq|: \glqq Er antwortete: \glq Noch nicht\grq{} und schloss den Vorgang.\grqq
+
+Für Inline-Code stehen zwei Befehle zur Verfügung: \verb|\verb|...\verb|| für exakten Verbatim-Text, z.\,B. \verb|SELECT * WHERE {?s ?p ?o}|, und \verb|\texttt{...}| für Bezeichner im Fließtext, z.\,B. \texttt{field\_uri} oder \texttt{EntityReference}.
 
 \subsection{Abbildungen}
 Grafikdateien liegen unter \texttt{img/} (siehe \texttt{README.md}). Die folgende Zeile auskommentieren, um eine echte Abbildung einzubinden.
