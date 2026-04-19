@@ -24,13 +24,19 @@
 \usepackage{babel}
 \babelprovide[import, main]{german}
 
+\usepackage{parskip}
+\makeatletter
+\renewenvironment{quotation}
+  {\list{}{\listparindent\z@\itemindent\z@\rightmargin\leftmargin\parsep\z@\@plus\p@}\item\relax}
+  {\endlist}
+\makeatother
 \usepackage{textcase}
 \usepackage{titlesec}
 \titleformat{\section}{\normalsize\sffamily\bfseries}{\thesection}{1em}{\MakeTextUppercase}
 \titleformat{\subsection}{\normalsize\sffamily\bfseries}{\thesubsection}{1em}{}
 
 \usepackage{listings}
-\lstset{basicstyle=\small\ttfamily, frame=single, breaklines=true, columns=flexible}
+\lstset{basicstyle=\small\ttfamily, frame=single, breaklines=true, columns=flexible, captionpos=b, xleftmargin=\leftmargini, xrightmargin=\leftmargini}
 
 \usepackage{graphicx}
 \usepackage{booktabs}
@@ -48,6 +54,7 @@
 }
 
 \graphicspath{{img/}}
+\addto\captionsgerman{\renewcommand{\figureautorefname}{Abbildung}}
 
 % Überschrift der Bibliographie bei article
 \renewcommand{\refname}{Literatur}
@@ -88,7 +95,7 @@ Längere wörtliche Übernahmen werden als eingerückter Block ohne Anführungsz
 \begin{quotation}\small
 Dies ist der erste Absatz eines Blockzitats über mehrere Sätze.
 
-Dies ist ein zweiter Absatz im selben Block. Am Ende folgt die Quelle \cite{Spector90}.
+Dies ist ein zweiter Absatz im selben Block. Am Ende [...] folgt die Quelle \cite{Spector90}.
 \end{quotation}
 
  Für Quellcode-Abschnitte steht die \texttt{lstlisting}-Umgebung aus dem Paket \texttt{listings} zur Verfügung:
@@ -103,21 +110,22 @@ def query_endpoint(endpoint, sparql):
 Die Sprache wird über \texttt{language=...} angegeben (z.\,B. \texttt{Python}, \texttt{SQL}, \texttt{XML}, \texttt{bash}).
 
 \subsection{Inline-Zitate}
-Kurze wörtliche Rede im Fließtext verwendet deutsche Anführungszeichen mit \verb|\glqq| und \verb|\grqq| (siehe Präambel: \verb|\babelprovide[import, main]{german}|). Beispiel: Musterfrau und Mustermann betonen die \glqq Ontologieintegration\grqq{} als zentrales Bindeglied zwischen CMS und Triple Store \cite{Kosiur01}.
+Kurze wörtliche Rede im Fließtext verwendet deutsche Anführungszeichen mit \verb|\glqq| und \verb|\grqq| (siehe Präambel: \verb|\babelprovide[import, main]{german}|). Beispiel: Musterfrau und Mustermann betonen die \glqq Ontologieintegration\grqq{} als zentrales Bindeglied zwischen CMS und Triplestore \cite{Kosiur01}.
 
 Verschachtelte Zitate innen mit \verb|\glq| und \verb|\grq|: \glqq Er antwortete: \glq Noch nicht\grq{} und schloss den Vorgang.\grqq
 
 Für Inline-Code stehen zwei Befehle zur Verfügung: \verb|\verb|...\verb|| für exakten Verbatim-Text, z.\,B. \verb|SELECT * WHERE {?s ?p ?o}|, und \verb|\texttt{...}| für Bezeichner im Fließtext, z.\,B. \texttt{field\_uri} oder \texttt{EntityReference}.
 
 \subsection{Abbildungen}
-Grafikdateien liegen unter \texttt{img/} (siehe \texttt{README.md}). Die folgende Zeile auskommentieren, um eine echte Abbildung einzubinden.
+Grafikdateien liegen unter \texttt{img/} (siehe \texttt{README.md}). Die folgende Zeile auskommentieren, um eine echte Abbildung (siehe \autoref{fig:sample}) einzubinden.
 
 \begin{figure}[ht]
     \centering
-    % \includegraphics[width=0.5\linewidth]{dein-bild}
-    \rule{4cm}{3cm}
+    % Bilder werden im img-Ordner abgelegt und hier per Dateinamen eingebunden. Die Breite des Bildes kann über den width-Parameter bestimmt werden. Passt ein Bild nicht mehr auf die Seite, wird es automatisch an die nächstbeste Stelle verschoben, wo es keine Sektion unterbricht.
+    \includegraphics[width=0.5\linewidth]{WissKI_logo.png} 
     \caption{Platzhalter für eine Beispielabbildung.}
-    \label{fig:sample}
+    % Gibt der Abbildung einen Namen (hier "sample"), um auf sie an anderer Stelle zu verweisen.
+    \label{fig:sample} 
 \end{figure}
 
 \subsection{Tabellen}
