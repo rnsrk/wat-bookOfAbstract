@@ -88,7 +88,7 @@ Dieser Text ist das \emph{Extended Abstract} für das WissKI-Anwender*innentreff
 Die Einleitung zeigt die Gliederung. WissKI (\emph{Wissenschaftliche KommunikationsInfrastruktur}) dient als Beispielthema; die Vorlage ist ein Ausgangspunkt für Konferenz-Abstracts. Fußnoten sind möglich\footnote{Beispiel für eine Fußnote.}.
 
 \section{Inhalt}
-Im Folgenden sind typische Bausteine der Vorlage skizziert. Fußnoten sind immer noch möglich\footnote{Beispiel für eine weitere Fußnote, die mehr Text haben sollte, damit man einen Zeilenumbruch in der FUßnoten-Sektion forcieren kann und das Layout prüfen kann.}.
+Im Folgenden sind typische Bausteine der Vorlage skizziert.
 
 \subsection{Zitate (Literaturverweise)}
 Verweise auf einen Artikel \cite{Abril07}, ein Buch \cite{Kosiur01}, eine Online-Ressource \cite{Thornburg01} oder einen Sammelband \cite{Spector90}.
@@ -98,20 +98,22 @@ Längere wörtliche Übernahmen werden als eingerückter Block ohne Anführungsz
 
 \begin{quotation}\small
 Dies ist der erste Absatz eines Blockzitats über mehrere Sätze.
+Eine Leerzeile im Quelltext oder die Verwendung von \verb|\\| erzeugt einen neuen Absatz 
 
-Dies ist ein zweiter Absatz im selben Block. Am Ende [...] folgt die Quelle \cite{Spector90}.
+ohne Abstand. Ein Abstand kann mit \verb|\\[0.5em]| forciert werden.\\[0.5em]
+Dies ist ein zweiter Absatz im selben Block. Am Ende folgt die Quelle \cite{Spector90}.
 \end{quotation}
 
  Für Quellcode-Abschnitte steht die \texttt{lstlisting}-Umgebung aus dem Paket \texttt{listings} zur Verfügung:
 
-\begin{lstlisting}[language=Python, caption={Beispiel einer Python-Funktion.}]
+ \begin{lstlisting}[language=Python, caption={Beispiel einer Python-Funktion.}]
 # SPARQL-Abfrage an einen WissKI-Triplestore
 def query_endpoint(endpoint, sparql):
     result = endpoint.query(sparql)
     return result
 \end{lstlisting}
 
-Die Sprache wird über \texttt{language=...} angegeben (z.\,B. \texttt{Python}, \texttt{SQL}, \texttt{XML}, \texttt{bash}).
+Die Sprache wird über \texttt{language=...} angegeben (z.\,B. \texttt{Python}, \texttt{SQL}, \texttt{XML}, \texttt{bash}). Auch die \texttt{caption} wird an dieser Stelle gesetzt.
 
 \subsection{Inline-Zitate}
 Kurze wörtliche Rede im Fließtext verwendet deutsche Anführungszeichen mit \verb|\glqq| und \verb|\grqq| (siehe Präambel: \verb|\babelprovide[import, main]{german}|). Beispiel: Musterfrau und Mustermann betonen die \glqq Ontologieintegration\grqq{} als zentrales Bindeglied zwischen CMS und Triplestore \cite{Kosiur01}.
@@ -153,7 +155,9 @@ Tabellen lassen sich mit dem Paket \texttt{booktabs} sauber formatieren.
 \subsection{Links und URLs}
 Mit \texttt{hyperref} verlinkt man lesbare Texte: \href{https://wiss-ki.eu/}{Website des WissKI-Projekts}. Für E-Mail: \href{mailto:kontakt@beispiel.de}{kontakt@beispiel.de}.
 
-Die Adresse direkt und umbrechbar setzen: \verb|\url| — \url{https://wiss-ki.eu/documentation}. Soll eine URL im Druck \emph{nicht} klickbar sein (selten): \texttt{\textbackslash nolinkurl\{...\}} aus dem Paket \texttt{url}: \nolinkurl{https://example.org/pfad}.
+Auf Abbildungen, Tabellen und Quelltext-Blöcke kann mit \verb|\ref{label}| (nur die Zahl, z.\,B.\ \ref{fig:sample}) bzw. \verb|\autoref{label}| (mit Typ, z.\,B.\ \autoref{fig:sample}) verwiesen werden.
+
+Die Adresse direkt und umbrechbar setzen: \verb|\url| — \url{https://wiss-ki.eu/documentation}. Soll keine eingebettete PDF-Verknüpfung erzeugt werden (selten): \texttt{\textbackslash nolinkurl\{...\}} aus dem Paket \texttt{url}: \nolinkurl{https://example.org/pfad}.
 
 \section{Literaturangaben}
 
