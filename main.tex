@@ -44,7 +44,17 @@
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{url}
-\usepackage[numbers]{natbib}
+%\usepackage[numbers]{natbib}
+
+\usepackage[
+  backend=biber,
+  style=authortitle,
+  sorting=nyt,
+  bibencoding=utf8,
+  natbib=true
+]{biblatex}
+\addbibresource{references.bib}
+
 \usepackage{orcidlink}
 \usepackage{hyperref}
 \hypersetup{%
@@ -67,10 +77,10 @@
 
 \author{
     Vorname Nachname \orcidlink{0000-0000-0000-0000} \\
-    \small email.adresse@replaceme.com \\
+    \small email.adresse@changeme.com \\
     \small Institution der Autor*innen, Stadt \\[0.5cm]
     Vorname Nachname \orcidlink{0000-0000-0000-0001} \\
-    \small email.adresse@replaceme.com \\
+    \small email.adresse@changeme.com \\
     \small Institution der Autor*innen, Stadt
 }
 \date{}
@@ -192,7 +202,9 @@ Mit \verb|\cite{Schlüssel}| wird eine Quelle im Text zitiert: \cite{Kosiur01}. 
 \section{Schlussbemerkung}
 Damit endet die Beispielvorlage für das \emph{Book of Abstract}.
 
-\bibliographystyle{plain}
-\bibliography{references}
+%\bibliographystyle{gerplain}
+%\bibliography{references}
+
+\printbibliography
 
 \end{document}
