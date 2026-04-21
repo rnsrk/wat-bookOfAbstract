@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% WissKI-Nutzertreffen — Vorlage für das Book of Abstract (Extended Abstract)
+% WissKI-Anwender*innentreffen — Vorlage für das Book of Abstract (Extended Abstract)
 %
 % Overleaf (Import von GitHub):
 %   Neues Projekt → Projekt importieren → Von GitHub → Repository-URL einfügen
@@ -12,6 +12,7 @@
 \documentclass[a4paper,11pt]{article}
 
 \usepackage[margin=2.5cm]{geometry}
+\usepackage[T1]{fontenc}
 
 % Noto Sans, falls installiert (u.\,a. Overleaf-TeX\,Live); sonst Standard-Sans
 \IfFileExists{noto.sty}{%
@@ -19,15 +20,42 @@
 }{%
   \renewcommand{\familydefault}{\sfdefault}%
 }
-\usepackage[T1]{fontenc}
 % Babel 24+: Sprache per \babelprovide (Paketoptionen [german]/[ngerman] sind hier unzuverlässig)
 \usepackage{babel}
 \babelprovide[import, main]{german}
 
+\usepackage{parskip}
+\makeatletter
+\def\footnoterule{\kern-3\p@ \hrule\@width 2in \kern 6\p@}
+\def\@makefntext#1{\noindent\@makefnmark\enskip#1}
+\renewenvironment{quotation}
+  {\list{}{\listparindent\z@\itemindent\z@\rightmargin\leftmargin\parsep\z@\@plus\p@}\item\relax}
+  {\endlist}
+\makeatother
+\usepackage{textcase}
+\usepackage{titlesec}
+\titleformat{\section}{\normalsize\sffamily\bfseries}{\thesection}{1em}{\MakeTextUppercase}
+\titleformat{\subsection}{\normalsize\sffamily\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalsize\sffamily}{\thesubsubsection}{1em}{}
+
+\usepackage{listings}
+\lstset{basicstyle=\small\ttfamily, frame=single, breaklines=true, columns=flexible, captionpos=b, xleftmargin=\leftmargini, xrightmargin=\leftmargini, aboveskip=\bigskipamount, belowskip=\bigskipamount}
+
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{url}
-\usepackage{natbib}
+%\usepackage[numbers]{natbib}
+
+\usepackage[
+  backend=biber,
+  style=authortitle,
+  sorting=nyt,
+  bibencoding=utf8,
+  natbib=true
+]{biblatex}
+\addbibresource{references.bib}
+
+\usepackage{orcidlink}
 \usepackage{hyperref}
 \hypersetup{%
   colorlinks=true,
@@ -35,34 +63,36 @@
   urlcolor=blue,
   citecolor=black,
   pdftitle={WissKI Abstract-Vorlage},
-  pdfsubject={Extended Abstract, Book of Abstract, WissKI-Nutzertreffen}%
+  pdfsubject={Extended Abstract, Book of Abstract, WissKI User Meeting}%
 }
 
 \graphicspath{{img/}}
+\addto\captionsgerman{\renewcommand{\figureautorefname}{Abbildung}}
+\renewcommand{\lstlistingname}{Quelltext}
 
 % Überschrift der Bibliographie bei article
 \renewcommand{\refname}{Literatur}
 
-\title{Titel des Beitrags zum \emph{Book of Abstract} des WissKI-Nutzertreffens}
+\title{Titel des Beitrags zum \emph{Book of Abstract} des WissKI-Anwender*innentreffens}
 
-\author{%
-    Erste Autorin\textsuperscript{1}\thanks{Korrespondierende Autorin: \url{email@beispiel.de}}
-    \and
-    Zweiter Autor\textsuperscript{2}%
+\author{
+    Vorname Nachname \orcidlink{0000-0000-0000-0000} \\
+    \small email.adresse@changeme.com \\
+    \small Institution der Autor*innen, Stadt \\[0.5cm]
+    Vorname Nachname \orcidlink{0000-0000-0000-0001} \\
+    \small email.adresse@changeme.com \\
+    \small Institution der Autor*innen, Stadt
 }
-
-\date{%
-    \vspace{-1em}
-    \small\itshape
-    \textsuperscript{1}Institution A, Stadt \\
-    \textsuperscript{2}Institution B, Stadt%
-}
+\date{}
 
 \begin{document}
 
 \maketitle
 
-Dieser Text ist das \emph{Extended Abstract} für das WissKI-Nutzertreffen und richtet sich an das \emph{Book of Abstract}. Das gesamte Dokument entspricht dem Abstract; es fasst die wichtigsten Beiträge und Ergebnisse der Arbeit zusammen.
+\begin{abstract}
+Eine kurze Zusammenfassung des nachfolgenden Abstracts für Ihre Einreichung zum WissKI-Anwender*innentreffen 2026 (maximal 10 Zeilen).
+Dieser Text ist das \emph{Extended Abstract} für das WissKI-Anwender*innentreffen und richtet sich an das \emph{Book of Abstract}. Das gesamte Dokument entspricht dem Abstract; es fasst die wichtigsten Beiträge und Ergebnisse der Arbeit zusammen.
+\end{abstract}
 
 \section{Einleitung}
 Die Einleitung zeigt die Gliederung. WissKI (\emph{Wissenschaftliche KommunikationsInfrastruktur}) dient als Beispielthema; die Vorlage ist ein Ausgangspunkt für Konferenz-Abstracts. Fußnoten sind möglich\footnote{Beispiel für eine Fußnote.}.
@@ -73,35 +103,45 @@ Im Folgenden sind typische Bausteine der Vorlage skizziert.
 \subsection{Zitate (Literaturverweise)}
 Verweise auf einen Artikel \cite{Abril07}, ein Buch \cite{Kosiur01}, eine Online-Ressource \cite{Thornburg01} oder einen Sammelband \cite{Spector90}.
 
-\subsection{Blockzitate}
-Längere wörtliche Übernahmen setzt man mit der Umgebung \texttt{quote} (schmalere Zeilen, oft mit etwas kleinerer Schrift). Die Quelle kann am Ende in eckigen Klammern stehen (Zitationsstil beachten).
-
-\begin{quote}\small
-\glqq Drupal als Framework bietet Extension Points, über die sich \emph{RDF}-basierte Pipelines nahtlos in bestehende Sammlungskataloge einbinden lassen.\grqq{} \cite{Kosiur01}
-\end{quote}
-
-Für mehrere Absätze im Block eignet sich \texttt{quotation} (Einzug am Absatzanfang):
+\subsection{Blockzitate und Code}
+Längere wörtliche Übernahmen werden als eingerückter Block ohne Anführungszeichen gesetzt (Umgebung \texttt{quotation}).
 
 \begin{quotation}\small
 Dies ist der erste Absatz eines Blockzitats über mehrere Sätze.
+Eine Leerzeile im Quelltext oder die Verwendung von \verb|\\| erzeugt einen neuen Absatz 
 
+ohne Abstand. Ein Abstand kann mit \verb|\\[0.5em]| forciert werden.\\[0.5em]
 Dies ist ein zweiter Absatz im selben Block. Am Ende folgt die Quelle \cite{Spector90}.
 \end{quotation}
 
+ Für Quellcode-Abschnitte steht die \texttt{lstlisting}-Umgebung aus dem Paket \texttt{listings} zur Verfügung:
+
+ \begin{lstlisting}[language=Python, caption={Beispiel einer Python-Funktion.}]
+# SPARQL-Abfrage an einen WissKI-Triplestore
+def query_endpoint(endpoint, sparql):
+    result = endpoint.query(sparql)
+    return result
+\end{lstlisting}
+
+Die Sprache wird über \texttt{language=...} angegeben (z.\,B. \texttt{Python}, \texttt{SQL}, \texttt{XML}, \texttt{bash}). Auch die \texttt{caption} wird an dieser Stelle gesetzt.
+
 \subsection{Inline-Zitate}
-Kurze wörtliche Rede im Fließtext verwendet deutsche Anführungszeichen mit \verb|\glqq| und \verb|\grqq| (siehe Präambel: \verb|\babelprovide[import, main]{german}|). Beispiel: Musterfrau und Mustermann betonen die \glqq Ontologieintegration\grqq{} als zentrales Bindeglied zwischen CMS und Triple Store \cite{Kosiur01}.
+Kurze wörtliche Rede im Fließtext verwendet deutsche Anführungszeichen mit \verb|\glqq| und \verb|\grqq| (siehe Präambel: \verb|\babelprovide[import, main]{german}|). Beispiel: Musterfrau und Mustermann betonen die \glqq Ontologieintegration\grqq{} als zentrales Bindeglied zwischen CMS und Triplestore \cite{Kosiur01}.
 
 Verschachtelte Zitate innen mit \verb|\glq| und \verb|\grq|: \glqq Er antwortete: \glq Noch nicht\grq{} und schloss den Vorgang.\grqq
 
+Für Inline-Code stehen zwei Befehle zur Verfügung: \verb|\verb|...\verb|| für exakten Verbatim-Text, z.\,B. \verb|SELECT * WHERE {?s ?p ?o}|, und \verb|\texttt{...}| für Bezeichner im Fließtext, z.\,B. \texttt{field\_uri} oder \texttt{EntityReference}.
+
 \subsection{Abbildungen}
-Grafikdateien liegen unter \texttt{img/} (siehe \texttt{README.md}). Die folgende Zeile auskommentieren, um eine echte Abbildung einzubinden.
+Grafikdateien liegen unter \texttt{img/} (siehe \texttt{README.md}). Die folgende Zeile auskommentieren, um eine echte Abbildung (siehe \autoref{fig:sample}) einzubinden.
 
 \begin{figure}[ht]
     \centering
-    % \includegraphics[width=0.5\linewidth]{dein-bild}
-    \rule{4cm}{3cm}
+    % Bilder werden im img-Ordner abgelegt und hier per Dateinamen eingebunden. Die Breite des Bildes kann über den width-Parameter bestimmt werden. Passt ein Bild nicht mehr auf die Seite, wird es automatisch an die nächstbeste Stelle verschoben, wo es keine Sektion unterbricht.
+    \includegraphics[width=0.5\linewidth]{WissKI_logo.png} 
     \caption{Platzhalter für eine Beispielabbildung.}
-    \label{fig:sample}
+    % Gibt der Abbildung einen Namen (hier "sample"), um auf sie an anderer Stelle zu verweisen.
+    \label{fig:sample} 
 \end{figure}
 
 \subsection{Tabellen}
@@ -109,8 +149,6 @@ Tabellen lassen sich mit dem Paket \texttt{booktabs} sauber formatieren.
 
 \begin{table}[ht]
     \centering
-    \caption{Beispieltabelle mit Daten.}
-    \label{tab:sample}
     \begin{tabular}{llr}
         \toprule
         \textbf{Komponente} & \textbf{Beschreibung} & \textbf{Anzahl} \\
@@ -120,17 +158,53 @@ Tabellen lassen sich mit dem Paket \texttt{booktabs} sauber formatieren.
         Ontologie & Datenmodell & \textit{n} \\
         \bottomrule
     \end{tabular}
+    \caption{Beispieltabelle mit Daten.}
+    \label{tab:sample}
 \end{table}
 
 \subsection{Links und URLs}
 Mit \texttt{hyperref} verlinkt man lesbare Texte: \href{https://wiss-ki.eu/}{Website des WissKI-Projekts}. Für E-Mail: \href{mailto:kontakt@beispiel.de}{kontakt@beispiel.de}.
 
-Die Adresse direkt und umbrechbar setzen: \verb|\url| — \url{https://wiss-ki.eu/documentation}. Soll eine URL im Druck \emph{nicht} klickbar sein (selten): \texttt{\textbackslash nolinkurl\{...\}} aus dem Paket \texttt{url}: \nolinkurl{https://example.org/pfad}.
+Auf Abbildungen, Tabellen und Quelltext-Blöcke kann mit \verb|\ref{label}| (nur die Zahl, z.\,B.\ \ref{fig:sample}) bzw. \verb|\autoref{label}| (mit Typ, z.\,B.\ \autoref{fig:sample}) verwiesen werden.
+
+Die Adresse direkt und umbrechbar setzen: \verb|\url| — \url{https://wiss-ki.eu/documentation}. Soll keine eingebettete PDF-Verknüpfung erzeugt werden (selten): \texttt{\textbackslash nolinkurl\{...\}} aus dem Paket \texttt{url}: \nolinkurl{https://example.org/pfad}.
+
+\section{Literaturangaben}
+
+\subsection{Einträge in der Bibliographiedatei}
+
+Alle zitierten Quellen werden in der Datei \texttt{references.bib} gepflegt. Jeder Eintrag beginnt mit einem Typ und einem frei wählbaren Schlüssel, über den im Text zitiert wird.
+
+\subsubsection{Häufige Eintragstypen}
+
+Die gebräuchlichsten Typen sind \texttt{@article} (Zeitschriftenartikel), \texttt{@book} (Monographie), \texttt{@inproceedings} (Konferenzbeitrag) und \texttt{@online} (Webressource). Beispiel:
+
+\begin{lstlisting}[language={}, caption={Beispieleintrag in references.bib}]
+@article{MusterMann2024,
+  author  = {Musterfrau, Ada and Mustermann, Max},
+  title   = {Ontologien in WissKI},
+  journal = {Digital Humanities Quarterly},
+  year    = {2024},
+  volume  = {18},
+  number  = {2},
+  pages   = {1--15}
+}
+\end{lstlisting}
+
+\subsubsection{Pflichtfelder}
+
+Jeder Typ erfordert bestimmte Felder: \texttt{@article} benötigt mindestens \texttt{author}, \texttt{title}, \texttt{journal} und \texttt{year}; \texttt{@book} benötigt \texttt{author} oder \texttt{editor}, \texttt{title}, \texttt{publisher} und \texttt{year}. Fehlende Pflichtfelder erzeugen eine BibTeX-Warnung.
+
+\subsection{Zitieren im Text}
+
+Mit \verb|\cite{Schlüssel}| wird eine Quelle im Text zitiert: \cite{Kosiur01}. Mehrere Quellen lassen sich in einem Befehl zusammenfassen: \verb|\cite{Key1,Key2}|. Das Paket \texttt{natbib} (hier mit Option \texttt{numbers} geladen) stellt zusätzlich \verb|\citep{}| für Klammerzitate und \verb|\citet{}| für Textzitate bereit.
 
 \section{Schlussbemerkung}
 Damit endet die Beispielvorlage für das \emph{Book of Abstract}.
 
-\bibliographystyle{plain}
-\bibliography{references}
+%\bibliographystyle{gerplain}
+%\bibliography{references}
+
+\printbibliography
 
 \end{document}

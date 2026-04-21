@@ -1,6 +1,6 @@
-# WissKI-Nutzertreffen — Book of Abstract (LaTeX-Vorlage)
+# WissKI-Anwender*innentreffen — Book of Abstract (LaTeX-Vorlage)
 
-LaTeX-Vorlage für \emph{Extended Abstracts} für den Eigennamen \emph{Book of Abstract} (englische Bezeichnung bewusst nicht eingedeutscht): Titel, Autorinnen und Autoren mit hochgestellten Affiliations-Markern, Abschnitte, Fußnoten, Literatur (BibTeX + `natbib`), Block- und Inline-Zitate, Abbildungen, Tabellen und Hyperlinks. **Sprache der Beispieltexte:** Deutsch (modernes **babel** mit `\babelprovide[import, main]{german}` in `main.tex` — kompatibel mit Babel ab ca. Version 24 / TeX Live 2024ff.).
+LaTeX-Vorlage für Extended Abstracts für das Book of Abstracts des WissKI-Anwender*innentreffens: Titel, Autorinnen und Autoren mit ORCID-iD, E-Mail-Adresse und Affiliationen, Abschnitte, Fußnoten, Literatur (BibLaTeX + Biber), Block- und Inline-Zitate, Quellcode, Abbildungen, Tabellen und (Hyper-)Links. **Sprache der Beispieltexte:** Deutsch (modernes **babel** mit `\babelprovide[import, main]{german}` in `main.tex` — kompatibel mit Babel ab ca. Version 24 / TeX Live 2024ff.).
 
 **Lizenz:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.de) (siehe `LICENSE`).
 
@@ -11,7 +11,7 @@ LaTeX-Vorlage für \emph{Extended Abstracts} für den Eigennamen \emph{Book of A
 3. GitHub ggf. autorisieren und das Repository auswählen.
 4. **Hauptdokument** auf `main.tex` stellen, falls nicht automatisch: **Menü** → **Hauptdokument** → `main.tex`.
 5. **Menü** → **Compiler** → **pdfLaTeX** (empfohlen; entspricht dieser Vorlage).
-6. **Recompile**. Literatur und Querverweise können zwei Durchläufe brauchen; Overleafs **latexmk** (mit `latexmkrc`) startet BibTeX bei Bedarf.
+6. **Recompile**. Literatur und Querverweise können zwei Durchläufe brauchen; Overleafs **latexmk** (mit `latexmkrc`) startet Biber bei Bedarf.
 
 ### Optional: Overleaf-Galerie
 
@@ -28,8 +28,13 @@ Im Repository: **Settings** → **General** → **Template repository** aktivier
 | `main.tex`       | Hauptquelle (in Overleaf als Hauptdokument setzen). |
 | `references.bib` | Beispiel-BibTeX-Datenbank. |
 | `img/`           | Abbildungen; `\graphicspath{{img/}}` in `main.tex`. |
+<<<<<<< HEAD
 | `latexmkrc`      | `latexmk` / Overleaf: pdfLaTeX + BibTeX. |
 | `Makefile`       | Lokaler Build mit `make` (nur `pdflatex` + `bibtex`, kein `latexmk`). |
+=======
+| `latexmkrc`      | `latexmk` / Overleaf: pdfLaTeX + Biber. |
+| `Makefile`       | Optional: lokaler Build mit `make`. |
+>>>>>>> 821357968e45a36eb9cd0372e108d6a8dceff979
 
 ## Lokaler Build
 
@@ -56,7 +61,7 @@ Oder dieselbe Kette manuell:
 
 ```bash
 pdflatex main.tex
-bibtex main
+biber main
 pdflatex main.tex
 pdflatex main.tex
 ```
@@ -73,7 +78,7 @@ Ist das Paket **noto** installiert (u.\,a. typisch auf Overleaf), wird **Noto Sa
 
 **PDF-Vorschau auf GitHub:** Zeile `*.pdf` in `.gitignore` entfernen, `make` ausführen (oder in Overleaf kompilieren und `main.pdf` herunterladen), **`main.pdf` committen**. Bei Layout-Änderungen PDF neu bauen und erneut committen. Hilfsdateien (`.aux`, `.log`, `.bbl`, …) weiter ignorieren.
 
-## Anpassung
+## Anpassung des Templates für Einreichungen
 
-- Titel, Autorinnen/Autoren, Affiliationen (Block `\date`) und Fließtext in `main.tex` bearbeiten.
-- Literatur in `references.bib` pflegen; `\bibliography{references}` muss zum Dateinamen der `.bib` passen (ohne Endung).
+- Titel, Autorinnen/Autoren, E-Mail-Adressen, Affiliationen und Fließtext in `main.tex` (ab Zeile 75) bearbeiten.
+- Literatur in `references.bib` pflegen; die Datei ist bereits in `main.tex` eingebunden (`\addbibresource{references.bib}`).
