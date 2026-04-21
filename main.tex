@@ -10,9 +10,15 @@
 
 \usepackage[sfdefault]{noto}
 
-% Babel 24+: Sprache per \babelprovide (Paketoptionen [german]/[ngerman] sind hier unzuverlässig)
 \usepackage{babel}
 \babelprovide[import, main]{german}
+\AtBeginDocument{\selectlanguage{german}}
+
+% Forcierte Trennung von Wörtern hier mit Leerzeichen angeben.
+\hyphenation{Aus-gangs-punkt Kon-fe-renz-ab-strak-te}
+
+\usepackage{csquotes}
+\usepackage[babel=true]{microtype}
 
 \usepackage{parskip}
 \makeatletter
@@ -29,19 +35,32 @@
 \titleformat{\subsubsection}{\normalsize\sffamily}{\thesubsubsection}{1em}{}
 
 \usepackage{listings}
-\lstset{basicstyle=\small\ttfamily, frame=single, breaklines=true, columns=flexible, captionpos=b, xleftmargin=\leftmargini, xrightmargin=\leftmargini, aboveskip=\bigskipamount, belowskip=\bigskipamount}
+% Kein \itshape im Code: NotoSansMono hat kein Italic (sonst Font-Warnung bei z.\,B. Kommentaren)
+\lstset{%
+  basicstyle=\small\ttfamily,
+  keywordstyle=\bfseries,
+  commentstyle=\ttfamily,
+  stringstyle=\ttfamily,
+  frame=single,
+  breaklines=true,
+  columns=flexible,
+  captionpos=b,
+  xleftmargin=\leftmargini,
+  xrightmargin=\leftmargini,
+  aboveskip=\bigskipamount,
+  belowskip=\bigskipamount}
 
 \usepackage{graphicx}
 \usepackage{booktabs}
-\usepackage{url}
+\usepackage{xurl}
 %\usepackage[numbers]{natbib}
 
 \usepackage[
   backend=biber,
+  language=german,
   style=authortitle,
   sorting=nyt,
   bibencoding=utf8,
-  language=german,
   natbib=true
 ]{biblatex}
 \addbibresource{references.bib}
@@ -53,6 +72,7 @@
   linkcolor=black,
   urlcolor=blue,
   citecolor=black,
+  breaklinks=true,
   pdftitle={WissKI Abstract-Vorlage},
   pdfsubject={Extended Abstract, Book of Abstract, WissKI User Meeting}%
 }
@@ -86,7 +106,7 @@ Dieser Text ist das \emph{Extended Abstract} für das WissKI-Anwender*innentreff
 \end{abstract}
 
 \section{Einleitung}
-Die Einleitung zeigt die Gliederung. WissKI (\emph{Wissenschaftliche KommunikationsInfrastruktur}) dient als Beispielthema; die Vorlage ist ein Ausgangspunkt für Konferenz-Abstracts. Fußnoten sind möglich\footnote{Beispiel für eine Fußnote.}.
+Die Einleitung zeigt die Gliederung. WissKI (\emph{Wissenschaft\-liche Kommunikations\-infrastruktur}) dient als Beispiel\-thema; die Vorlage ist ein Aus\-gang\-spunkt für Konferenz\-Abstracts. Fuß\-noten sind möglich\footnote{Beispiel für eine Fußnote.}.
 
 \section{Inhalt}
 Im Folgenden sind typische Bausteine der Vorlage skizziert.
@@ -117,7 +137,7 @@ def query_endpoint(endpoint, sparql):
 Die Sprache wird über \texttt{language=...} angegeben (z.\,B. \texttt{Python}, \texttt{SQL}, \texttt{XML}, \texttt{bash}). Auch die \texttt{caption} wird an dieser Stelle gesetzt.
 
 \subsection{Inline-Zitate}
-Kurze wörtliche Rede im Fließtext verwendet deutsche Anführungszeichen mit \verb|\glqq| und \verb|\grqq| (siehe Präambel: \verb|\babelprovide[import, main]{german}|). Beispiel: Musterfrau und Mustermann betonen die \glqq Ontologieintegration\grqq{} als zentrales Bindeglied zwischen CMS und Triplestore \cite{Kosiur01}.
+Kurze wörtliche Rede im Fließtext verwendet deutsche Anführungszeichen mit \verb|\glqq| und \verb|\grqq| (siehe Präambel: \verb|\babelprovide| mit Optionen \texttt{import}, \texttt{main}). Beispiel: Musterfrau und Mustermann betonen die \glqq Ontologieintegration\grqq{} als zentrales Bindeglied zwischen CMS und Triplestore \cite{Kosiur01}.
 
 Verschachtelte Zitate innen mit \verb|\glq| und \verb|\grq|: \glqq Er antwortete: \glq Noch nicht\grq{} und schloss den Vorgang.\grqq
 
@@ -154,11 +174,15 @@ Tabellen lassen sich mit dem Paket \texttt{booktabs} sauber formatieren.
 \end{table}
 
 \subsection{Links und URLs}
+\begingroup
+\sloppy
 Mit \texttt{hyperref} verlinkt man lesbare Texte: \href{https://wiss-ki.eu/}{Website des WissKI-Projekts}. Für E-Mail: \href{mailto:kontakt@beispiel.de}{kontakt@beispiel.de}.
 
 Auf Abbildungen, Tabellen und Quelltext-Blöcke kann mit \verb|\ref{label}| (nur die Zahl, z.\,B.\ \ref{fig:sample}) bzw. \verb|\autoref{label}| (mit Typ, z.\,B.\ \autoref{fig:sample}) verwiesen werden.
 
 Die Adresse direkt und umbrechbar setzen: \verb|\url| — \url{https://wiss-ki.eu/documentation}. Soll keine eingebettete PDF-Verknüpfung erzeugt werden (selten): \texttt{\textbackslash nolinkurl\{...\}} aus dem Paket \texttt{url}: \nolinkurl{https://example.org/pfad}.
+\par
+\endgroup
 
 \section{Literaturangaben}
 
