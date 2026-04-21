@@ -8,8 +8,12 @@
 \usepackage[margin=2.5cm]{geometry}
 \usepackage[T1]{fontenc}
 
-\usepackage[sfdefault]{noto}
-
+% Noto Sans, falls installiert (u.\,a. Overleaf-TeX\,Live); sonst Standard-Sans
+\IfFileExists{noto.sty}{%
+  \usepackage[sfdefault]{noto}%
+}{%
+  \renewcommand{\familydefault}{\sfdefault}%
+}
 % Babel 24+: Sprache per \babelprovide (Paketoptionen [german]/[ngerman] sind hier unzuverlässig)
 \usepackage{babel}
 \babelprovide[import, main]{german}
@@ -41,7 +45,6 @@
   style=authortitle,
   sorting=nyt,
   bibencoding=utf8,
-  language=german,
   natbib=true
 ]{biblatex}
 \addbibresource{references.bib}

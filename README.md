@@ -4,22 +4,21 @@ LaTeX-Vorlage für Extended Abstracts für das Book of Abstracts des WissKI-Anwe
 
 **Lizenz:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.de) (siehe `LICENSE`).
 
-## Nutzung in Overleaf (Import von GitHub)
+## Für Beitragseinreichende des WissKI-Anwender\*innentreffen
 
-1. Dieses Repository auf **GitHub** legen (öffentlich oder privat).
-2. In Overleaf: **Neues Projekt** → **Projekt importieren** → **Von GitHub**.
-3. GitHub ggf. autorisieren und das Repository auswählen.
-4. **Hauptdokument** auf `main.tex` stellen, falls nicht automatisch: **Menü** → **Hauptdokument** → `main.tex`.
-5. **Menü** → **Compiler** → **pdfLaTeX** (empfohlen; entspricht dieser Vorlage).
-6. **Recompile**. Literatur und Querverweise können zwei Durchläufe brauchen; Overleafs **latexmk** (mit `latexmkrc`) startet Biber bei Bedarf.
+### Allgemein
 
-### Optional: Overleaf-Galerie
+Mit Hilfe dieser Vorlage erstellen Sie Ihre Beiträge für das Book of Abstracts des WissKI-Anwender\*innentreffen. Ein einfacher Weg ist über [Overleaf durch einen Import und die anschließende Bearbeitung des Templates](#nutzung-in-overleaf-import-von-github). Arbeiten Sie in der `main.tex`, behalten Sie deren Struktur bei und nutzen Sie ausschließlich die im Template verwendete Formatierungen (`cheat_doc.tex.bkp` können Sie als "Spickzettel" verwenden). Ihre Literatur-Daten legen Sie in der Datei `references.bib` an. Nach Fertigstellung können Sie gerne das ganze Repositorium komprimieren und an [unsere Redaktion](mailto:info@wiss-ki.eu) senden.
 
-Einreichen über die Overleaf-Oberfläche (nicht allein über GitHub): im Projekt den Workflow für **Vorlagen / Galerie** nutzen. Struktur entspricht üblichen Galerie-Projekten (`main.tex`, `references.bib`, `README.md`, `LICENSE`).
+### Nutzung in Overleaf (Import von GitHub)
 
-### Optional: GitHub „Use this template“
+1. Laden Sie das Repository als [zip-Datei(https://github.com/rnsrk/wat-bookOfAbstract/releases/tag/v2.0.0)] herunter.
+2. In [Overleaf(https://www.overleaf.com/project)]: **New project** → **Upload project**.
+3. Das Template sollte automatisch kompilieren.
+4. **Recompile**. Literatur und Querverweise können zwei Durchläufe brauchen; Overleafs **latexmk** (mit `latexmkrc`) startet Biber bei Bedarf.
+5. Das fertige Repositorium laden sie unter **File** > **Download as source (.zip)** herunter.
 
-Im Repository: **Settings** → **General** → **Template repository** aktivieren. Andere können dann mit einem Klick ein neues Repo anlegen — gut kombinierbar mit Overleaf-Import.
+** Für Entwickler und lokalem Build
 
 ## Projektaufbau
 
@@ -28,20 +27,33 @@ Im Repository: **Settings** → **General** → **Template repository** aktivier
 | `main.tex`       | Hauptquelle (in Overleaf als Hauptdokument setzen). |
 | `references.bib` | Beispiel-BibTeX-Datenbank. |
 | `img/`           | Abbildungen; `\graphicspath{{img/}}` in `main.tex`. |
-<<<<<<< HEAD
-| `latexmkrc`      | `latexmk` / Overleaf: pdfLaTeX + BibTeX. |
-| `Makefile`       | Lokaler Build mit `make` (nur `pdflatex` + `bibtex`, kein `latexmk`). |
-=======
 | `latexmkrc`      | `latexmk` / Overleaf: pdfLaTeX + Biber. |
 | `Makefile`       | Optional: lokaler Build mit `make`. |
->>>>>>> 821357968e45a36eb9cd0372e108d6a8dceff979
 
 ## Lokaler Build
 
-Voraussetzungen: **`pdflatex`** und **`bibtex`** (typisch über das TeX-Live-Metapaket der Distribution). **`latexmk`** ist oft eine **eigene** Paketauswahl und fehlt bei Minimalinstallationen — dann meldet die Shell z. B. „Unknown command: latexmk“. Nachinstallieren:
+### Voraussetzungen
 
-- **Debian / Ubuntu:** `sudo apt install latexmk`
-- **Arch Linux** (u. a. Manjaro, CachyOS): `sudo pacman -S texlive-binextra`
+#### Pakete
+
+**Programme** (auf dem `PATH`):
+
+| Komponente | Rolle |
+|------------|--------|
+| `pdflatex` | PDF-Kompilation |
+| `biber` | Literatur-Backend für **BibLaTeX** (nicht klassisches `bibtex`; siehe `\usepackage[backend=biber,…]{biblatex}` in `main.tex`) |
+| `latexmk` | optional, empfohlen — nutzt `latexmkrc` wie Overleaf |
+| `make` | optional — `Makefile`-Kette |
+
+**LaTeX-Pakete** (aus `main.tex`; bei Minimalinstallationen fehlen einzelne `.sty`-Dateien, bis die passenden TeX-Live-Collections nachinstalliert sind):
+
+- `geometry`, `fontenc`, `babel` (Deutsch über `\babelprovide`), `parskip`, `textcase`, `titlesec`, `listings`, `graphicx`, `booktabs`, `url`, `biblatex`, `orcidlink`, `hyperref`
+- Schrift: Paket **`noto`** (optional; ohne es nutzt die Vorlage die Standard-Sans der Distribution — siehe Abschnitt [Schrift](#schrift))
+
+**Distribution:** TeX Live-Pakete der jeweiligen Distribution installieren, nicht nur `bibtex`. **`latexmk`** ist oft eine **eigene** Paketauswahl und fehlt bei Minimalinstallationen — dann meldet die Shell z. B. „Unknown command: latexmk“. Nachinstallieren:
+
+- **Debian / Ubuntu:** `sudo apt install latexmk texlive-bibtex-extra biber` (Minimalinstallationen: ggf. `texlive-latex-extra` für weitere `.sty`-Abhängigkeiten; für **Noto** wie in `main.tex`: `texlive-fonts-extra`)
+- **Arch Linux** (u. a. Manjaro, CachyOS): `sudo pacman -S texlive-binextra texlive-bibtexextra biber` — **`texlive-bibtexextra`** enthält u. a. **biblatex** (`.sty`), das **`biber`**-Programm liegt im **eigenen** Paket **`biber`** (`extra/biber`), nicht zwingend in `PATH`, wenn es fehlt. Bei **Noto** zusätzlich `texlive-fontsextra`, für `fontaxes.sty` u. a. `texlive-latexextra`
 
 Danach ggf. neues Terminal oder neu einloggen.
 
@@ -65,20 +77,3 @@ biber main
 pdflatex main.tex
 pdflatex main.tex
 ```
-
-Hinweis: Wer TeX Live **manuell** in den Benutzerordner installiert, muss das passende **`bin`**-Verzeichnis in der **`PATH`** der Shell eintragen. Ist `pdflatex` bereits per Distributionspaket verfügbar (z. B. Debian: `texlive-latex-base` / Arch: `texlive-bin`), ist dafür in der Regel **kein** zusätzliches `source`-Setup nötig — fehlendes `latexmk` behebt man durch das passende Zusatzpaket oder durch `make`.
-
-## Schrift
-
-Ist das Paket **noto** installiert (u.\,a. typisch auf Overleaf), wird **Noto Sans** als serifenlose Hauptschrift genutzt. Sonst greift die Vorlage auf die Standard-Sans der Distribution zurück.
-
-## Git: Kompilate ignorieren oder PDF zur Vorschau versionieren?
-
-**Empfehlung (aktuell in `.gitignore`):** alle erzeugten Dateien ignorieren, einschließlich **`main.pdf`**. Klone bleiben klein, Diffs lesbar; **Overleaf** (oder `make` / `latexmk`) erzeugt das PDF stets aus `main.tex`.
-
-**PDF-Vorschau auf GitHub:** Zeile `*.pdf` in `.gitignore` entfernen, `make` ausführen (oder in Overleaf kompilieren und `main.pdf` herunterladen), **`main.pdf` committen**. Bei Layout-Änderungen PDF neu bauen und erneut committen. Hilfsdateien (`.aux`, `.log`, `.bbl`, …) weiter ignorieren.
-
-## Anpassung des Templates für Einreichungen
-
-- Titel, Autorinnen/Autoren, E-Mail-Adressen, Affiliationen und Fließtext in `main.tex` (ab Zeile 75) bearbeiten.
-- Literatur in `references.bib` pflegen; die Datei ist bereits in `main.tex` eingebunden (`\addbibresource{references.bib}`).
