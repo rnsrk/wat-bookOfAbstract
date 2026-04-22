@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                WissKI-Anwender*innentreffen                %
-%              Vorlage für das Book of Abstract              %
+%              Vorlage für das Book of Abstracts             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[a4paper,11pt]{article}
@@ -53,12 +53,11 @@
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{xurl}
-%\usepackage[numbers]{natbib}
 
 \usepackage[
   backend=biber,
   language=german,
-  style=authortitle,
+  style=numeric,
   sorting=nyt,
   bibencoding=utf8,
   natbib=true
@@ -74,17 +73,17 @@
   citecolor=black,
   breaklinks=true,
   pdftitle={WissKI Abstract-Vorlage},
-  pdfsubject={Extended Abstract, Book of Abstract, WissKI User Meeting}%
+  pdfsubject={Abstract, Book of Abstracts, WissKI User Meeting}%
 }
 
 \graphicspath{{img/}}
 \addto\captionsgerman{\renewcommand{\figureautorefname}{Abbildung}}
 \renewcommand{\lstlistingname}{Quelltext}
 
-% Überschrift der Bibliographie bei article
-\renewcommand{\refname}{Literatur}
+% Überschrift der Bibliografie bei article
+\renewcommand{\refname}{Bibliografie}
 
-\title{Titel des Beitrags zum \emph{Book of Abstract} des WissKI-Anwender*innentreffens}
+\title{Titel des Beitrags zum \emph{Book of Abstracts} des WissKI-Anwender*innentreffens}
 
 \author{
     Vorname Nachname \orcidlink{0000-0000-0000-0000} \\
@@ -101,12 +100,12 @@
 \maketitle
 
 \begin{abstract}
-Eine kurze Zusammenfassung des nachfolgenden Abstracts für Ihre Einreichung zum WissKI-Anwender*innentreffen 2026 (maximal 10 Zeilen).
-Dieser Text ist das \emph{Extended Abstract} für das WissKI-Anwender*innentreffen und richtet sich an das \emph{Book of Abstract}. Das gesamte Dokument entspricht dem Abstract; es fasst die wichtigsten Beiträge und Ergebnisse der Arbeit zusammen.
+Eine prägnante Zusammenfassung des nachfolgenden Abstracts für Ihre Einreichung zum WissKI-Anwender*innentreffen 2026 (maximal 10 Zeilen).
+Diese gibt einen Überblick über Ihre Problemstellung, Methodik und Ergebnisse.
 \end{abstract}
 
 \section{Einleitung}
-Die Einleitung zeigt die Gliederung. WissKI (\emph{Wissenschaft\-liche Kommunikations\-infrastruktur}) dient als Beispiel\-thema; die Vorlage ist ein Aus\-gang\-spunkt für Konferenz\-Abstracts. Fuß\-noten sind möglich\footnote{Beispiel für eine Fußnote.}.
+Die Einleitung führt zum Thema hin und beschreibt den Aufbau des Abstracts. WissKI (\emph{Wissenschaftliche Kommunikationsinfrastruktur}) dient als Beispielthema; die Vorlage ist ein Ausgangspunkt für Konferenzabstracts. Fußnoten sind möglich.\footnote{Beispiel für eine Fußnote.}
 
 \section{Inhalt}
 Im Folgenden sind typische Bausteine der Vorlage skizziert.
@@ -114,7 +113,7 @@ Im Folgenden sind typische Bausteine der Vorlage skizziert.
 \subsection{Zitate (Literaturverweise)}
 Verweise auf einen Artikel \cite{Abril07}, ein Buch \cite{Kosiur01}, eine Online-Ressource \cite{Thornburg01} oder einen Sammelband \cite{Spector90}.
 
-\subsection{Blockzitate und Code}
+\subsection{Blockzitate und Quelltext}
 Längere wörtliche Übernahmen werden als eingerückter Block ohne Anführungszeichen gesetzt (Umgebung \texttt{quotation}).
 
 \begin{quotation}\small
@@ -125,38 +124,42 @@ ohne Abstand. Ein Abstand kann mit \verb|\\[0.5em]| forciert werden.\\[0.5em]
 Dies ist ein zweiter Absatz im selben Block. Am Ende folgt die Quelle \cite{Spector90}.
 \end{quotation}
 
- Für Quellcode-Abschnitte steht die \texttt{lstlisting}-Umgebung aus dem Paket \texttt{listings} zur Verfügung:
+ Für Quelltext-Abschnitte steht die \texttt{lstlisting}-Umgebung aus dem Paket \texttt{listings} zur Verfügung:
 
  \begin{lstlisting}[language=Python, caption={Beispiel einer Python-Funktion.}]
 # SPARQL-Abfrage an einen WissKI-Triplestore
-def query_endpoint(endpoint, sparql):
-    result = endpoint.query(sparql)
-    return result
+import random
+
+def ask_someone(question):
+    person = random.choice([ "Julia", "Mark", "Robert"])
+    print(f"Hey {person}, {question}")
+
+ask_someone("Wann ist das WissKI Anwender*innentreffen?")
 \end{lstlisting}
 
-Die Sprache wird über \texttt{language=...} angegeben (z.\,B. \texttt{Python}, \texttt{SQL}, \texttt{XML}, \texttt{bash}). Auch die \texttt{caption} wird an dieser Stelle gesetzt.
+Die Sprache wird über \texttt{language=...} angegeben (z.\,B. \texttt{Python}, \texttt{SQL}, \texttt{XML}, \texttt{bash}). Auch die \texttt{caption} (Beschreibung) wird an dieser Stelle gesetzt.
 
 \subsection{Inline-Zitate}
-Kurze wörtliche Rede im Fließtext verwendet deutsche Anführungszeichen mit \verb|\glqq| und \verb|\grqq| (siehe Präambel: \verb|\babelprovide| mit Optionen \texttt{import}, \texttt{main}). Beispiel: Musterfrau und Mustermann betonen die \glqq Ontologieintegration\grqq{} als zentrales Bindeglied zwischen CMS und Triplestore \cite{Kosiur01}.
+Kurze wörtliche Rede im Fließtext verwendet deutsche Anführungszeichen mit \verb|\glqq| und \verb|\grqq| (siehe Präambel: \verb|\babelprovide| mit Optionen \texttt{import}, \texttt{main}). Beispiel: Musterfrau und Mustermann betonen die \glqq Ontologieintegration\grqq{} als zentrales Bindeglied zwischen CMS und Triplestore. \cite{Kosiur01}
 
-Verschachtelte Zitate innen mit \verb|\glq| und \verb|\grq|: \glqq Er antwortete: \glq Noch nicht\grq{} und schloss den Vorgang.\grqq
+Verschachtelte Zitate innen mit einfachen Anführungszeichen (\verb|\glq| und \verb|\grq|): \glqq Er antwortete: \glq Noch nicht\grq{} und schloss den Vorgang.\grqq
 
 Für Inline-Code stehen zwei Befehle zur Verfügung: \verb|\verb|...\verb|| für exakten Verbatim-Text, z.\,B. \verb|SELECT * WHERE {?s ?p ?o}|, und \verb|\texttt{...}| für Bezeichner im Fließtext, z.\,B. \texttt{field\_uri} oder \texttt{EntityReference}.
 
 \subsection{Abbildungen}
-Grafikdateien liegen unter \texttt{img/} (siehe \texttt{README.md}). Die folgende Zeile auskommentieren, um eine echte Abbildung (siehe \autoref{fig:sample}) einzubinden.
+Grafikdateien (wie \autoref{fig:sample}) liegen unter \texttt{img/} und werden mit \\\verb|{\includegraphics[width=[Breite]\linewidth]{[Bild]}}| eingebunden.
 
 \begin{figure}[ht]
     \centering
     % Bilder werden im img-Ordner abgelegt und hier per Dateinamen eingebunden. Die Breite des Bildes kann über den width-Parameter bestimmt werden. Passt ein Bild nicht mehr auf die Seite, wird es automatisch an die nächstbeste Stelle verschoben, wo es keine Sektion unterbricht.
-    \includegraphics[width=0.5\linewidth]{WissKI_logo.png} 
+    \includegraphics[width=0.5\linewidth]{WissKI_logo.png}
     \caption{Platzhalter für eine Beispielabbildung.}
     % Gibt der Abbildung einen Namen (hier "sample"), um auf sie an anderer Stelle zu verweisen.
     \label{fig:sample} 
 \end{figure}
 
 \subsection{Tabellen}
-Tabellen lassen sich mit dem Paket \texttt{booktabs} sauber formatieren.
+Tabellen lassen sich mit dem Paket \texttt{booktabs} erstellen und sauber formatieren.
 
 \begin{table}[ht]
     \centering
@@ -174,28 +177,24 @@ Tabellen lassen sich mit dem Paket \texttt{booktabs} sauber formatieren.
 \end{table}
 
 \subsection{Links und URLs}
-\begingroup
-\sloppy
-Mit \texttt{hyperref} verlinkt man lesbare Texte: \href{https://wiss-ki.eu/}{Website des WissKI-Projekts}. Für E-Mail: \href{mailto:kontakt@beispiel.de}{kontakt@beispiel.de}.
+Mit \verb|\href{[URL]}{[Linktext]}| können Links auf Textelemente gesetzt werden: \href{https://wiss-ki.eu/}{Website des WissKI-Projekts}. 
 
 Auf Abbildungen, Tabellen und Quelltext-Blöcke kann mit \verb|\ref{label}| (nur die Zahl, z.\,B.\ \ref{fig:sample}) bzw. \verb|\autoref{label}| (mit Typ, z.\,B.\ \autoref{fig:sample}) verwiesen werden.
 
-Die Adresse direkt und umbrechbar setzen: \verb|\url| — \url{https://wiss-ki.eu/documentation}. Soll keine eingebettete PDF-Verknüpfung erzeugt werden (selten): \texttt{\textbackslash nolinkurl\{...\}} aus dem Paket \texttt{url}: \nolinkurl{https://example.org/pfad}.
-\par
-\endgroup
+Link-Adressen können mit \verb|\url| -> \url{https://wiss-ki.eu/documentation} direkt im Text eingefügt werden.
 
 \section{Literaturangaben}
 
-\subsection{Einträge in der Bibliographiedatei}
+\subsection{Einträge in der Bibliografiedatei}
 
 Alle zitierten Quellen werden in der Datei \texttt{references.bib} gepflegt. Jeder Eintrag beginnt mit einem Typ und einem frei wählbaren Schlüssel, über den im Text zitiert wird.
 
 \subsubsection{Häufige Eintragstypen}
 
-Die gebräuchlichsten Typen sind \texttt{@article} (Zeitschriftenartikel), \texttt{@book} (Monographie), \texttt{@inproceedings} (Konferenzbeitrag) und \texttt{@online} (Webressource). Beispiel:
+Die gebräuchlichsten Typen sind \texttt{@article} (Zeitschriftenartikel), \texttt{@book} (Monografie), \texttt{@incollection} (Sammelbände) und \texttt{@misc} (Webressource). Beispiel:
 
 \begin{lstlisting}[language={}, caption={Beispieleintrag in references.bib}]
-@article{MusterMann2024,
+@article{Mustermann2024,
   author  = {Musterfrau, Ada and Mustermann, Max},
   title   = {Ontologien in WissKI},
   journal = {Digital Humanities Quarterly},
@@ -212,14 +211,19 @@ Jeder Typ erfordert bestimmte Felder: \texttt{@article} benötigt mindestens \te
 
 \subsection{Zitieren im Text}
 
-Mit \verb|\cite{Schlüssel}| wird eine Quelle im Text zitiert: \cite{Kosiur01}. Mehrere Quellen lassen sich in einem Befehl zusammenfassen: \verb|\cite{Key1,Key2}|. Das Paket \texttt{natbib} (hier mit Option \texttt{numbers} geladen) stellt zusätzlich \verb|\citep{}| für Klammerzitate und \verb|\citet{}| für Textzitate bereit.
+Mit \verb|\cite{Schlüssel}| wird eine Quelle im Text zitiert: \cite{Kosiur01}. Mehrere Quellen lassen sich in dem Befehl \verb|\cite{Key1,Key2}| zusammenfassen: \cite{Kosiur01,Thornburg01}.
 
 \section{Schlussbemerkung}
-Damit endet die Beispielvorlage für das \emph{Book of Abstract}.
+Hier werden die Ergebnisse abschließend zusammengefasst. Damit endet die Beispielvorlage für das \emph{Book of Abstracts}.
 
-%\bibliographystyle{gerplain}
-%\bibliography{references}
+\printbibliography[title=Bibliografie]
 
-\printbibliography
+% Fügen Sie hier auch Kurzbiografien aller Autor*innen ein. Jede Kurzbiografie sollte 100 Wörter nicht überschreiten.
+\section*{Kurzbiografie(n)}
+\subsection*{Autor*in 1}
+Hier folgt eine kurze biografische Darstellung (max. 100 Wörter), in der Sie auf Ihre Ausbildung, fachlichen Hauptgebiete, Forschungsinteressen und beruflichen Schwerpunkte eingehen. Darin sollten im Kontext des WissKI-Anwender*innentreffens relevante Tätigkeiten aufgeführt und Ihre aktuelle Beschäftigungssituation, einschließlich Aufgabenbereich und Affiliation, benannt werden.
+
+\subsection*{Autor*in 2}
+Hier folgt eine kurze biografische Darstellung (max. 100 Wörter), in der Sie auf Ihre Ausbildung, fachlichen Hauptgebiete, Forschungsinteressen und beruflichen Schwerpunkte eingehen. Darin sollten im Kontext des WissKI-Anwender*innentreffens relevante Tätigkeiten aufgeführt und Ihre aktuelle Beschäftigungssituation, einschließlich Aufgabenbereich und Affiliation, benannt werden.
 
 \end{document}

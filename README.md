@@ -4,23 +4,25 @@ LaTeX-Vorlage für Extended Abstracts für das Book of Abstracts des WissKI-Anwe
 
 **Lizenz:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.de) (siehe `LICENSE`).
 
+[**Call for Abstracts**](wiss-ki.eu/wat26-callforabstracts)
+
 ## Für Beitragseinreichende des WissKI-Anwender\*innentreffen
 
 ### Allgemein
 
-Mit Hilfe dieser Vorlage erstellen Sie Ihre Beiträge für das Book of Abstracts des WissKI-Anwender\*innentreffen. Ein einfacher Weg ist über [Overleaf durch einen Import und die anschließende Bearbeitung des Templates](#nutzung-in-overleaf-import-von-github). Arbeiten Sie in der `main.tex`, behalten Sie deren Struktur bei und nutzen Sie ausschließlich die im Template verwendete Formatierungen (`cheat_doc.tex.bkp` können Sie als "Spickzettel" verwenden). Ihre Literatur-Daten legen Sie in der Datei `references.bib` an. Nach Fertigstellung können Sie gerne das ganze Repositorium komprimieren und an [unsere Redaktion](mailto:info@wiss-ki.eu) senden.
+Mit Hilfe dieser Vorlage erstellen Sie Ihre Beiträge für das Book of Abstracts des WissKI-Anwender\*innentreffen. Ein einfacher Weg ist über [Overleaf durch einen Import und die anschließende Bearbeitung des Templates](#nutzung-in-overleaf-import-von-github). Arbeiten Sie in der `main.tex`, behalten Sie deren Struktur bei und nutzen Sie ausschließlich die im Template verwendeten Formatierungen (Die originale [`main.tex`](https://github.com/rnsrk/wat-bookOfAbstract/blob/1.x/main.tex) finden Sie jederzeit im Repo zum Nachschlagen). Ihre Literatur-Daten legen Sie in der Datei `references.bib` an. Nach Fertigstellung können Sie gerne das ganze Repositorium komprimieren und an [unsere Redaktion](mailto:info@wiss-ki.eu) senden.
 
 ### Nutzung in Overleaf (Import von GitHub)
 
-1. Laden Sie das Repository als [zip-Datei(https://github.com/rnsrk/wat-bookOfAbstract/releases/tag/v2.0.0)] herunter.
+1. Laden Sie das Repository als [zip-Datei](https://github.com/rnsrk/wat-bookOfAbstract/releases/tag/v2.1.0) herunter.
 2. In [Overleaf(https://www.overleaf.com/project)]: **New project** → **Upload project**.
 3. Das Template sollte automatisch kompilieren.
-4. **Recompile**. Literatur und Querverweise können zwei Durchläufe brauchen; Overleafs **latexmk** (mit `latexmkrc`) startet Biber bei Bedarf.
+4. **Recompile**. Literatur und Querverweise können zwei Durchläufe brauchen.
 5. Das fertige Repositorium laden sie unter **File** > **Download as source (.zip)** herunter.
 
-** Für Entwickler und lokalem Build
+## Für Entwickler und lokalem Build
 
-## Projektaufbau
+### Projektaufbau
 
 | Datei / Ordner   | Rolle |
 |------------------|--------|
@@ -29,8 +31,6 @@ Mit Hilfe dieser Vorlage erstellen Sie Ihre Beiträge für das Book of Abstracts
 | `img/`           | Abbildungen; `\graphicspath{{img/}}` in `main.tex`. |
 | `latexmkrc`      | `latexmk` / Overleaf: pdfLaTeX + Biber. |
 | `Makefile`       | Optional: lokaler Build mit `make`. |
-
-## Lokaler Build
 
 ### Voraussetzungen
 
