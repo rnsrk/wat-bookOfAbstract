@@ -124,7 +124,7 @@ ohne Abstand. Ein Abstand kann mit \verb|\\[0.5em]| forciert werden.\\[0.5em]
 Dies ist ein zweiter Absatz im selben Block. Am Ende folgt die Quelle \cite{Spector90}.
 \end{quotation}
 
- Für Quelltext-Abschnitte steht die \texttt{lstlisting}-Umgebung aus dem Paket \texttt{listings} zur Verfügung:
+Für Quelltext-Abschnitte steht die \texttt{lstlisting}-Umgebung aus dem Paket \texttt{listings} zur Verfügung. Die Sprache wird über \texttt{language=...} angegeben (z.\,B. \texttt{Python}, \texttt{SQL}, \texttt{XML}, \texttt{bash}). Auch die \texttt{caption} (Beschreibung) wird an dieser Stelle gesetzt.
 
  \begin{lstlisting}[language=Python, caption={Beispiel einer Python-Funktion.}]
 # Ein Beispiel fuer eine Python-Funktion
@@ -136,8 +136,6 @@ def ask_someone(question):
 
 ask_someone("Wann ist das WissKI Anwender*innentreffen?")
 \end{lstlisting}
-
-Die Sprache wird über \texttt{language=...} angegeben (z.\,B. \texttt{Python}, \texttt{SQL}, \texttt{XML}, \texttt{bash}). Auch die \texttt{caption} (Beschreibung) wird an dieser Stelle gesetzt.
 
 \subsection{Inline-Zitate}
 Kurze wörtliche Rede im Fließtext verwendet deutsche Anführungszeichen mit \verb|\glqq| und \verb|\grqq| (siehe Präambel: \verb|\babelprovide| mit Optionen \texttt{import}, \texttt{main}). Beispiel: Musterfrau und Mustermann betonen die \glqq Ontologieintegration\grqq{} als zentrales Bindeglied zwischen CMS und Triplestore. \cite{Kosiur01}
