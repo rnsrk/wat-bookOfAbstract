@@ -14,7 +14,7 @@ Mit Hilfe dieser Vorlage erstellen Sie Ihre Beiträge für das Book of Abstracts
 
 ### Nutzung in Overleaf (Import von GitHub)
 
-1. Laden Sie das Repository als [zip-Datei](https://github.com/rnsrk/wat-bookOfAbstract/releases/tag/v2.1.0) herunter.
+1. Laden Sie das Repository als [zip-Datei](https://github.com/rnsrk/wat-bookOfAbstract/releases/tag/v2.1.3) herunter.
 2. In [Overleaf(https://www.overleaf.com/project)]: **New project** → **Upload project**.
 3. Das Template sollte automatisch kompilieren.
 4. **Recompile**. Literatur und Querverweise können zwei Durchläufe brauchen.
