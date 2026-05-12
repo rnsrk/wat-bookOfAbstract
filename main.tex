@@ -145,12 +145,15 @@ Verschachtelte Zitate innen mit einfachen Anführungszeichen (\verb|\glq| und \v
 Für Inline-Code stehen zwei Befehle zur Verfügung: \verb|\verb|...\verb|| für exakten Verbatim-Text, z.\,B. \verb|SELECT * WHERE {?s ?p ?o}|, und \verb|\texttt{...}| für Bezeichner im Fließtext, z.\,B. \texttt{field\_uri} oder \texttt{EntityReference}.
 
 \subsection{Abbildungen}
-Grafikdateien (wie \autoref{fig:sample}) liegen unter \texttt{img/} und werden mit \\\verb|{\includegraphics[width=[Breite]\linewidth]{[Bild]}}| eingebunden.
+Grafikdateien (wie \autoref{fig:sample}) liegen unter \texttt{img/} und werden mit \\\verb|{\includegraphics[width=[Breite]\linewidth, alt={[Beschreibung]}]{[Bild]}}| eingebunden. Für jedes verwendete Bild sollte mittels des \texttt{alt}-Parameters eine aussagekräftige Beschreibung angegeben werden.
 
 \begin{figure}[ht]
     \centering
-    % Bilder werden im img-Ordner abgelegt und hier per Dateinamen eingebunden. Die Breite des Bildes kann über den width-Parameter bestimmt werden. Passt ein Bild nicht mehr auf die Seite, wird es automatisch an die nächstbeste Stelle verschoben, wo es keine Sektion unterbricht.
-    \includegraphics[width=0.5\linewidth]{WissKI_logo.png}
+    % Bilder werden im img-Ordner abgelegt und hier per Dateinamen eingebunden. Die Breite des Bildes kann über den width-Parameter bestimmt werden. Passt ein Bild nicht mehr auf die Seite, wird es automatisch an die nächstbeste Stelle verschoben, wo es keine Sektion unterbricht. Über den alt-Parameter wird ein ALT-Text für das jeweilige Bild hinzugefügt, was die Angabe einer Beschreibung für das Bild ermöglicht, die von Screenreadern verwendet wird.
+    \includegraphics[
+      width=0.5\linewidth, 
+      alt={Das WissKI-Logo zeigt das schwarze RDF-Icon, bestehend aus drei vernetzten Punkten, das wie ein Eiswürfel in einem Glas Whiskey schwimmt. Das Symbol ist zur Hälfte in die bernsteinfarbene Flüssigkeit eingetaucht und spiegelt sich darin. Eine Anspielung auf den Namen WissKI.}
+    ]{WissKI_logo.png}
     \caption{Platzhalter für eine Beispielabbildung.}
     % Gibt der Abbildung einen Namen (hier "sample"), um auf sie an anderer Stelle zu verweisen.
     \label{fig:sample} 
