@@ -1,11 +1,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                WissKI-Anwender*innentreffen                %
-%              Vorlage für das Book of Abstracts             %
+%        WissKI-Anwender*innentreffen 2026                    %
+%              Book of Abstracts (Publikation)                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[a4paper,11pt]{article}
 
-\usepackage[margin=2.5cm]{geometry}
+\usepackage[margin=2.5cm,bottom=3cm]{geometry}
 \usepackage[T1]{fontenc}
 
 \usepackage[sfdefault]{noto}
@@ -15,7 +15,14 @@
 \AtBeginDocument{\selectlanguage{german}}
 
 % Forcierte Trennung von Wörtern hier mit Leerzeichen angeben.
-\hyphenation{Aus-gangs-punkt Kon-fe-renz-ab-strak-te}
+\hyphenation{%
+  Aus-gangs-punkt
+  Kon-fe-renz-ab-strak-te
+  Kom-mu-ni-ka-ti-ons-in-fra-struk-tur
+  Kom-mu-ni-ka-ti-ons-in-fra-struk-tu-ren
+  Wis-sen-schaft-li-chen
+  Wis-sen-schaft-li-che
+}
 
 \usepackage{csquotes}
 \usepackage[babel=true]{microtype}
@@ -62,9 +69,47 @@
   bibencoding=utf8,
   natbib=true
 ]{biblatex}
-\addbibresource{references.bib}
+
+% Bibliografien je Abstract: jede .bib wird global registriert,
+% \begin{refsection} ... \end{refsection} im jeweiligen Abstract sorgt dafür,
+% dass nur die dort zitierten Einträge ausgegeben werden.
+\addbibresource{abstracts/praesentationen/01-ontologie-mapping/references.bib}
+\addbibresource{abstracts/praesentationen/02-migration-sammlungsdatenbank/references.bib}
+\addbibresource{abstracts/praesentationen/03-iiif-vernetzung/references.bib}
+\addbibresource{abstracts/praesentationen/04-sparql-endpunkte/references.bib}
+\addbibresource{abstracts/praesentationen/05-linked-open-data/references.bib}
+\addbibresource{abstracts/praesentationen/06-personennormdaten/references.bib}
+\addbibresource{abstracts/praesentationen/07-versionierung-archivierung/references.bib}
+\addbibresource{abstracts/workshops/01-protege-einfuehrung/references.bib}
+\addbibresource{abstracts/workshops/02-installation-konfiguration/references.bib}
+\addbibresource{abstracts/workshops/03-sparql-queries/references.bib}
+\addbibresource{abstracts/workshops/04-cidoc-modellierung/references.bib}
+\addbibresource{abstracts/workshops/05-linked-data-visualisierung/references.bib}
+\addbibresource{abstracts/byw/01-briefedition-mueller/references.bib}
+\addbibresource{abstracts/byw/02-stadtmuseum-beispielstadt/references.bib}
 
 \usepackage{orcidlink}
+
+\usepackage{tocloft}
+% Seitenzahl-Breite und rechter Rand (verhindert Overflow bei langen Titeln)
+\cftsetpnumwidth{2.5em}
+\cftsetrmarg{3.5em}
+% Part-Einträge: Kategorien, Impressum, Vorwort etc. -- fett, kein Einzug, kein Nummernfeld
+\setlength{\cftbeforepartskip}{1.8em}
+\setlength{\cftpartindent}{0pt}
+\setlength{\cftpartnumwidth}{0pt}
+\renewcommand{\cftpartfont}{\sffamily\bfseries}
+\renewcommand{\cftpartpagefont}{\sffamily\bfseries}
+\renewcommand{\cftpartdotsep}{\cftnodots}
+\renewcommand{\cftpartafterpnum}{\vspace{0.4em}}
+% Section-Einträge: Beiträge -- normal, eingerückt, mit Punkten zur Seitenzahl
+\setlength{\cftbeforesecskip}{0.5em}
+\setlength{\cftsecindent}{1.5em}
+\setlength{\cftsecnumwidth}{0pt}
+\renewcommand{\cftsecfont}{\sffamily\small}
+\renewcommand{\cftsecpagefont}{\sffamily\small}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
 \usepackage{hyperref}
 \hypersetup{%
   colorlinks=true,
@@ -72,159 +117,173 @@
   urlcolor=blue,
   citecolor=black,
   breaklinks=true,
-  pdftitle={WissKI Abstract-Vorlage},
-  pdfsubject={Abstract, Book of Abstracts, WissKI User Meeting}%
+  hypertexnames=false,
+  pdftitle={Book of Abstracts -- WissKI-Anwender*innentreffen 2026},
+  pdfsubject={WissKI-Anwender*innentreffen 2026, Book of Abstracts}%
 }
+
+\usepackage{fancyhdr}
+\usepackage{truncate}
 
 \graphicspath{{img/}}
 \addto\captionsgerman{\renewcommand{\figureautorefname}{Abbildung}}
 \renewcommand{\lstlistingname}{Quelltext}
+\renewcommand{\contentsname}{Inhaltsverzeichnis}
 
-% Überschrift der Bibliografie bei article
-\renewcommand{\refname}{Bibliografie}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Kolumnentitel (fancyhdr) und Buch-spezifische Makros     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title{Titel des Beitrags zum \emph{Book of Abstracts} des WissKI-Anwender*innentreffens}
+% Aktuelle Kategorie für den Kolumnentitel
+\newcommand{\currentcategory}{}
 
-\author{
-    Vorname Nachname \orcidlink{0000-0000-0000-0000} \\
-    \small email.adresse@changeme.com \\
-    \small Institution der Autor*innen, Stadt \\[0.5cm]
-    Vorname Nachname \orcidlink{0000-0000-0000-0001} \\
-    \small email.adresse@changeme.com \\
-    \small Institution der Autor*innen, Stadt
+% Sektionsbefehle sollen die Kolumnentitel nicht überschreiben:
+% \rightmark wird in \beitrag manuell auf den Abstract-Titel gesetzt.
+\renewcommand{\sectionmark}[1]{}
+\renewcommand{\subsectionmark}[1]{}
+
+% fancy-Stil: Kategorie links, Beitragstitel rechts, Seitenzahl unten.
+% Wichtig: \fancypagestyle{fancy}{...} (statt nur \pagestyle{fancy} + losen
+% \fancyhead/-foot), damit die Felder bei jeder Aktivierung neu gesetzt werden
+% und nicht durch eine zwischenzeitliche \thispagestyle{kategorie} verloren gehen.
+\fancypagestyle{fancy}{%
+  \fancyhf{}%
+  \fancyhead[L]{\sffamily\small\currentcategory}%
+  \fancyhead[R]{\sffamily\small\itshape\truncate{0.55\headwidth}{\rightmark}}%
+  \cfoot{\thepage}%
+  \renewcommand{\headrulewidth}{0.4pt}%
+  \renewcommand{\footrulewidth}{0pt}%
 }
-\date{}
+\pagestyle{fancy}
 
+% Kategorie- und Titelseiten: ohne Kopfzeile
+\fancypagestyle{kategorie}{%
+  \fancyhf{}%
+  \renewcommand{\headrulewidth}{0pt}%
+  \renewcommand{\footrulewidth}{0pt}%
+}
+\fancypagestyle{titelseite}{%
+  \fancyhf{}%
+  \renewcommand{\headrulewidth}{0pt}%
+  \renewcommand{\footrulewidth}{0pt}%
+}
+% Vorderes Material: nur Seitenzahl, keine Kopfzeile
+\fancypagestyle{vornmaterial}{%
+  \fancyhf{}%
+  \cfoot{\thepage}%
+  \renewcommand{\headrulewidth}{0pt}%
+  \renewcommand{\footrulewidth}{0pt}%
+}
+
+% Bibliografie-Überschrift je Abstract: nicht nummeriert, nicht im TOC
+\defbibheading{abstractbib}[Bibliografie]{%
+  \subsection*{#1}%
+}
+
+% \category{Name}: leitet eine neue Kategorie ein (Trennblatt + Kolumnentitel)
+\newcommand{\category}[1]{%
+  \clearpage
+  \thispagestyle{kategorie}%
+  \renewcommand{\currentcategory}{#1}%
+  \markright{}%
+  \phantomsection
+  \addcontentsline{toc}{part}{#1}%
+  \null\vspace*{0.25\textheight}%
+  \begin{center}
+    {\Huge\sffamily\bfseries\MakeTextUppercase{#1}}\par
+  \end{center}
+  \clearpage
+}
+
+% \backmattersection{Name}: top-level Eintrag ohne Trennblatt (für Backmatter)
+\newcommand{\backmattersection}[1]{%
+  \clearpage
+  \renewcommand{\currentcategory}{#1}%
+  \markright{}%
+  \phantomsection
+  \addcontentsline{toc}{part}{#1}%
+  \section*{#1}%
+}
+
+% beitrag-Umgebung: kapselt einen einzelnen Abstract.
+%   #1 = Titel, #2 = Autor*innenblock (Name, ORCID, E-Mail, Affiliation -- mit \\)
+% - Resettet Zähler (section, subsection, ..., figure, table) auf 0.
+% - Setzt \rightmark auf den Titel (Kopfzeile zeigt Kategorie | Titel).
+% - Trägt nur den Titel manuell ins Inhaltsverzeichnis ein und
+%   neutralisiert dann \addcontentsline, damit interne \section{...} usw.
+%   das globale TOC nicht verschmutzen.
+% - Öffnet eine refsection; am Ende wird die abstract-eigene
+%   Bibliografie ausgegeben.
+\newenvironment{beitrag}[2]{%
+  \clearpage
+  \phantomsection
+  \addcontentsline{toc}{section}{#1}%
+  \markright{#1}%
+  \setcounter{section}{0}%
+  \setcounter{subsection}{0}%
+  \setcounter{subsubsection}{0}%
+  \setcounter{figure}{0}%
+  \setcounter{table}{0}%
+  \setcounter{footnote}{0}%
+  \begingroup
+    \centering
+    {\Large\sffamily\bfseries #1\par}%
+    \medskip
+    {\normalsize #2\par}%
+  \endgroup
+  \vspace{1.5em}
+  \let\savedaddcontentsline\addcontentsline
+  \renewcommand{\addcontentsline}[3]{}%
+  \begin{refsection}%
+}{%
+  \printbibliography[heading=abstractbib]%
+  \end{refsection}%
+  \let\addcontentsline\savedaddcontentsline%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
-\maketitle
+% ---------- Vorderes Material (Frontmatter) ----------
+\pagenumbering{roman}
+\pagestyle{vornmaterial}
 
-\begin{abstract}
-Eine prägnante Zusammenfassung des nachfolgenden Abstracts für Ihre Einreichung zum WissKI-Anwender*innentreffen 2026 (maximal 10 Zeilen).
-Diese gibt einen Überblick über Ihre Problemstellung, Methodik und Ergebnisse.
-\end{abstract}
+\input{frontmatter/titelblatt}
+\input{backmatter/impressum}
+\input{frontmatter/sponsoren}
+\input{frontmatter/vorwort}
 
-\section{Einleitung}
-Die Einleitung führt zum Thema hin und beschreibt den Aufbau des Abstracts. WissKI (\emph{Wissenschaftliche Kommunikationsinfrastruktur}) dient als Beispielthema; die Vorlage ist ein Ausgangspunkt für Konferenzabstracts. Fußnoten sind möglich.\footnote{Beispiel für eine Fußnote.}
+\clearpage
+\tableofcontents
 
-\section{Inhalt}
-Im Folgenden sind typische Bausteine der Vorlage skizziert.
+% ---------- Beiträge ----------
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\pagestyle{fancy}
 
-\subsection{Zitate (Literaturverweise)}
-Verweise auf einen Artikel \cite{Abril07}, ein Buch \cite{Kosiur01}, eine Online-Ressource \cite{Thornburg01} oder einen Sammelband \cite{Spector90}.
+\category{Präsentationen}
+\input{abstracts/praesentationen/01-ontologie-mapping/abstract}
+\input{abstracts/praesentationen/02-migration-sammlungsdatenbank/abstract}
+\input{abstracts/praesentationen/03-iiif-vernetzung/abstract}
+\input{abstracts/praesentationen/04-sparql-endpunkte/abstract}
+\input{abstracts/praesentationen/05-linked-open-data/abstract}
+\input{abstracts/praesentationen/06-personennormdaten/abstract}
+\input{abstracts/praesentationen/07-versionierung-archivierung/abstract}
 
-\subsection{Blockzitate und Quelltext}
-Längere wörtliche Übernahmen werden als eingerückter Block ohne Anführungszeichen gesetzt (Umgebung \texttt{quotation}).
+\category{Workshops}
+\input{abstracts/workshops/01-protege-einfuehrung/abstract}
+\input{abstracts/workshops/02-installation-konfiguration/abstract}
+\input{abstracts/workshops/03-sparql-queries/abstract}
+\input{abstracts/workshops/04-cidoc-modellierung/abstract}
+\input{abstracts/workshops/05-linked-data-visualisierung/abstract}
 
-\begin{quotation}\small
-Dies ist der erste Absatz eines Blockzitats über mehrere Sätze.
-Eine Leerzeile im Quelltext oder die Verwendung von \verb|\\| erzeugt einen neuen Absatz 
+\category{Bring your WissKI}
+\input{abstracts/byw/01-briefedition-mueller/abstract}
+\input{abstracts/byw/02-stadtmuseum-beispielstadt/abstract}
 
-ohne Abstand. Ein Abstand kann mit \verb|\\[0.5em]| forciert werden.\\[0.5em]
-Dies ist ein zweiter Absatz im selben Block. Am Ende folgt die Quelle \cite{Spector90}.
-\end{quotation}
-
-Für Quelltext-Abschnitte steht die \texttt{lstlisting}-Umgebung aus dem Paket \texttt{listings} zur Verfügung. Die Sprache wird über \texttt{language=...} angegeben (z.\,B. \texttt{Python}, \texttt{SQL}, \texttt{XML}, \texttt{bash}). Auch die \texttt{caption} (Beschreibung) wird an dieser Stelle gesetzt.
-
- \begin{lstlisting}[language=Python, caption={Beispiel einer Python-Funktion.}]
-# Ein Beispiel fuer eine Python-Funktion
-import random
-
-def ask_someone(question):
-    person = random.choice([ "Julia", "Mark", "Robert"])
-    print(f"Hey {person}, {question}")
-
-ask_someone("Wann ist das WissKI Anwender*innentreffen?")
-\end{lstlisting}
-
-\subsection{Inline-Zitate}
-Kurze wörtliche Rede im Fließtext verwendet deutsche Anführungszeichen mit \verb|\glqq| und \verb|\grqq| (siehe Präambel: \verb|\babelprovide| mit Optionen \texttt{import}, \texttt{main}). Beispiel: Musterfrau und Mustermann betonen die \glqq Ontologieintegration\grqq{} als zentrales Bindeglied zwischen CMS und Triplestore. \cite{Kosiur01}
-
-Verschachtelte Zitate innen mit einfachen Anführungszeichen (\verb|\glq| und \verb|\grq|): \glqq Er antwortete: \glq Noch nicht\grq{} und schloss den Vorgang.\grqq
-
-Für Inline-Code stehen zwei Befehle zur Verfügung: \verb|\verb|...\verb|| für exakten Verbatim-Text, z.\,B. \verb|SELECT * WHERE {?s ?p ?o}|, und \verb|\texttt{...}| für Bezeichner im Fließtext, z.\,B. \texttt{field\_uri} oder \texttt{EntityReference}.
-
-\subsection{Abbildungen}
-Grafikdateien (wie \autoref{fig:sample}) liegen unter \texttt{img/} und werden mit \\\verb|{\includegraphics[width=[Breite]\linewidth, alt={[Beschreibung]}]{[Bild]}}| eingebunden. Für jedes verwendete Bild sollte mittels des \texttt{alt}-Parameters eine aussagekräftige Beschreibung angegeben werden.
-
-\begin{figure}[ht]
-    \centering
-    % Bilder werden im img-Ordner abgelegt und hier per Dateinamen eingebunden. Die Breite des Bildes kann über den width-Parameter bestimmt werden. Passt ein Bild nicht mehr auf die Seite, wird es automatisch an die nächstbeste Stelle verschoben, wo es keine Sektion unterbricht. Über den alt-Parameter wird ein ALT-Text für das jeweilige Bild hinzugefügt, was die Angabe einer Beschreibung für das Bild ermöglicht, die von Screenreadern verwendet wird.
-    \includegraphics[
-      width=0.5\linewidth, 
-      alt={Das WissKI-Logo zeigt das schwarze RDF-Icon, bestehend aus drei vernetzten Punkten, das wie ein Eiswürfel in einem Glas Whiskey schwimmt. Das Symbol ist zur Hälfte in die bernsteinfarbene Flüssigkeit eingetaucht und spiegelt sich darin. Eine Anspielung auf den Namen WissKI.}
-    ]{WissKI_logo.png}
-    \caption{Platzhalter für eine Beispielabbildung.}
-    % Gibt der Abbildung einen Namen (hier "sample"), um auf sie an anderer Stelle zu verweisen.
-    \label{fig:sample} 
-\end{figure}
-
-\subsection{Tabellen}
-Tabellen lassen sich mit dem Paket \texttt{booktabs} erstellen und sauber formatieren.
-
-\begin{table}[ht]
-    \centering
-    \begin{tabular}{llr}
-        \toprule
-        \textbf{Komponente} & \textbf{Beschreibung} & \textbf{Anzahl} \\
-        \midrule
-        WissKI & Kernsystem & 1 \\
-        Drupal & CMS-Backend & 1 \\
-        Ontologie & Datenmodell & \textit{n} \\
-        \bottomrule
-    \end{tabular}
-    \caption{Beispieltabelle mit Daten.}
-    \label{tab:sample}
-\end{table}
-
-\subsection{Links und URLs}
-Mit \verb|\href{[URL]}{[Linktext]}| können Links auf Textelemente gesetzt werden: \href{https://wiss-ki.eu/}{Website des WissKI-Projekts}. 
-
-Auf Abbildungen, Tabellen und Quelltext-Blöcke kann mit \verb|\ref{label}| (nur die Zahl, z.\,B.\ \ref{fig:sample}) bzw. \verb|\autoref{label}| (mit Typ, z.\,B.\ \autoref{fig:sample}) verwiesen werden.
-
-Link-Adressen können mit \verb|\url| -> \url{https://wiss-ki.eu/documentation} direkt im Text eingefügt werden.
-
-\section{Literaturangaben}
-
-\subsection{Einträge in der Bibliografiedatei}
-
-Alle zitierten Quellen werden in der Datei \texttt{references.bib} gepflegt. Jeder Eintrag beginnt mit einem Typ und einem frei wählbaren Schlüssel, über den im Text zitiert wird.
-
-\subsubsection{Häufige Eintragstypen}
-
-Die gebräuchlichsten Typen sind \texttt{@article} (Zeitschriftenartikel), \texttt{@book} (Monografie), \texttt{@incollection} (Sammelbände) und \texttt{@misc} (Webressource). Beispiel:
-
-\begin{lstlisting}[language={}, caption={Beispieleintrag in references.bib}]
-@article{Mustermann2024,
-  author  = {Musterfrau, Ada and Mustermann, Max},
-  title   = {Ontologien in WissKI},
-  journal = {Digital Humanities Quarterly},
-  year    = {2024},
-  volume  = {18},
-  number  = {2},
-  pages   = {1--15}
-}
-\end{lstlisting}
-
-\subsubsection{Pflichtfelder}
-
-Jeder Typ erfordert bestimmte Felder: \texttt{@article} benötigt mindestens \texttt{author}, \texttt{title}, \texttt{journal} und \texttt{year}; \texttt{@book} benötigt \texttt{author} oder \texttt{editor}, \texttt{title}, \texttt{publisher} und \texttt{year}. Fehlende Pflichtfelder erzeugen eine BibTeX-Warnung.
-
-\subsection{Zitieren im Text}
-
-Mit \verb|\cite{Schlüssel}| wird eine Quelle im Text zitiert: \cite{Kosiur01}. Mehrere Quellen lassen sich in dem Befehl \verb|\cite{Key1,Key2}| zusammenfassen: \cite{Kosiur01,Thornburg01}.
-
-\section{Schlussbemerkung}
-Hier werden die Ergebnisse abschließend zusammengefasst. Damit endet die Beispielvorlage für das \emph{Book of Abstracts}.
-
-\printbibliography[title=Bibliografie]
-
-% Fügen Sie hier auch Kurzbiografien aller Autor*innen ein. Jede Kurzbiografie sollte 100 Wörter nicht überschreiten.
-\section*{Kurzbiografie(n)}
-\subsection*{Autor*in 1}
-Hier folgt eine kurze biografische Darstellung (max. 100 Wörter), in der Sie auf Ihre Ausbildung, fachlichen Hauptgebiete, Forschungsinteressen und beruflichen Schwerpunkte eingehen. Darin sollten im Kontext des WissKI-Anwender*innentreffens relevante Tätigkeiten aufgeführt und Ihre aktuelle Beschäftigungssituation, einschließlich Aufgabenbereich und Affiliation, benannt werden.
-
-\subsection*{Autor*in 2}
-Hier folgt eine kurze biografische Darstellung (max. 100 Wörter), in der Sie auf Ihre Ausbildung, fachlichen Hauptgebiete, Forschungsinteressen und beruflichen Schwerpunkte eingehen. Darin sollten im Kontext des WissKI-Anwender*innentreffens relevante Tätigkeiten aufgeführt und Ihre aktuelle Beschäftigungssituation, einschließlich Aufgabenbereich und Affiliation, benannt werden.
+% ---------- Hinteres Material (Backmatter) ----------
+\input{backmatter/kurzbiografien}
+\input{backmatter/rueckseite}
 
 \end{document}

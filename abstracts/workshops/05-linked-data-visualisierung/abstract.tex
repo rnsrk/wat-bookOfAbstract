@@ -1,0 +1,34 @@
+\graphicspath{{abstracts/workshops/05-linked-data-visualisierung/img/}{img/}}
+
+\begin{beitrag}{Visualisierung von Linked Data mit Cytoscape}{%
+Udo Ullmann\,\orcidlink{0000-0003-1234-5678} \\
+\small \href{mailto:udo.ullmann@example.org}{udo.ullmann@example.org} \\
+\small Albert-Ludwigs-Universität Freiburg \\[0.5cm]
+Vera Vogt\,\orcidlink{0000-0001-2345-6780} \\
+\small \href{mailto:vera.vogt@example.org}{vera.vogt@example.org} \\
+\small Friedrich-Alexander-Universität Erlangen-Nürnberg
+}
+
+\section{Motivation}
+Forschungsdatensätze, die in einem semantischen Modell vorliegen, sind ihrem Wesen nach graphenförmig: Sie bestehen aus Knoten (Personen, Orten, Werken, Ereignissen) und gerichteten Kanten (Beziehungen, Mitwirkungen, Datierungen). Die Visualisierung als Graph kann methodische Erkenntnisse stützen, die in tabellarischen Auswertungen verborgen bleiben -- etwa zu Vernetzungsdichten, Hub-Strukturen oder Clusterbildungen. Dennoch ist die Graphenvisualisierung im geisteswissenschaftlichen Kontext nach wie vor eine weniger geübte Praxis. Der vorliegende Workshop möchte hier einen praktischen Beitrag leisten: Die Teilnehmer*innen lernen, wie sie aus einem WissKI-basierten Datensatz mit Hilfe der freien Software \texttt{Cytoscape} aussagekräftige Graphenvisualisierungen erstellen können.
+
+\section{Konzeptionelle Grundlagen}
+Im ersten Modul werden wir uns mit den konzeptionellen Grundlagen befassen. Wir reflektieren, was eine Visualisierung leisten kann und was sie nicht leisten kann; wir besprechen, welche Forschungsfragen sich für eine Graphenvisualisierung eignen und welche nicht; und wir gehen auf die typischen Designentscheidungen ein, die sich bei jeder Graphenvisualisierung stellen: Knoten-Größe, Kanten-Stärke, Farbcodierung, Layout-Algorithmus, Filterstrategien. Die methodischen Grundlagen orientieren sich an der einschlägigen Visualisierungsliteratur \cite{ullmann2024-visualisierung}.
+
+\section{Werkzeugauswahl}
+Die Wahl von Cytoscape als zentralem Werkzeug ist nicht selbstverständlich, weil das Programm ursprünglich aus der biomedizinischen Netzwerkanalyse stammt. Wir haben uns trotzdem für Cytoscape entschieden, weil es einerseits ausgereift und stabil ist, andererseits über umfangreiche Anpassungsmöglichkeiten verfügt und weil es eine SPARQL-fähige Eingangsbrücke bietet, die für unsere Zwecke unmittelbar nutzbar ist. Eine ausführliche Begründung der Werkzeugauswahl findet sich bei \cite{vogt2025-werkzeugauswahl}.
+
+\section{Praxisteil}
+Im zweiten Modul werden wir gemeinsam einen vorbereiteten WissKI-Datensatz in Cytoscape importieren. Wir besprechen die nötigen SPARQL-Abfragen, untersuchen die importierten Strukturen und experimentieren mit unterschiedlichen Layout-Algorithmen. Besonderes Augenmerk legen wir auf die Frage, welcher Algorithmus für welche Datenstruktur geeignet ist und wie sich Layout-Entscheidungen interpretieren lassen.
+
+Im dritten Modul werden wir die importierten Daten gezielt aufbereiten: Wir filtern uninteressante Beziehungstypen heraus, fassen ähnliche Knoten zu Cluster-Repräsentanten zusammen, codieren wichtige Eigenschaften über Farbe und Größe. Wir arbeiten dabei iterativ -- jede Designentscheidung wird unmittelbar diskutiert, gerechtfertigt oder revidiert. Diese iterative Arbeitsweise ist die zentrale didaktische Methode des Workshops.
+
+Im vierten Modul werden wir die im Workshop entstandene Visualisierung für die Publikation aufbereiten. Wir besprechen Exportformate, Auflösungen, Schriftgrößen und die Frage, wann eine Visualisierung als Abbildung in einer Publikation tatsächlich aussagekräftig ist und wann sie nur dekorativen Charakter hat.
+
+\section{Materialien und Voraussetzungen}
+Vorausgesetzt werden grundlegende Kenntnisse semantischer Datenmodelle und idealerweise erste Erfahrungen mit SPARQL-Abfragen. Eine vorbereitete Cytoscape-Installation, ein WissKI-Beispieldatensatz und sämtliche Workshop-Materialien werden im Vorfeld in einem öffentlichen Git-Repositorium bereitgestellt. Alle im Workshop verwendeten Daten sind unter freier Lizenz veröffentlicht und können in eigenen Lehrkontexten weitergenutzt werden.
+
+\section{Erwartetes Ergebnis}
+Am Ende des Workshops sind die Teilnehmer*innen in der Lage, einen eigenen WissKI-Datensatz in Cytoscape zu importieren, eine sinnvolle Visualisierung zu entwerfen, sie iterativ zu verbessern und die zugrunde liegenden Designentscheidungen sachlich zu reflektieren. Wichtiger als die handwerkliche Beherrschung von Cytoscape ist uns dabei die methodische Reflexion: Eine Visualisierung ist kein Selbstzweck; sie ist ein argumentatives Werkzeug, dessen Aussagekraft begründet werden muss.
+
+\end{beitrag}

@@ -1,0 +1,37 @@
+\graphicspath{{abstracts/workshops/04-cidoc-modellierung/img/}{img/}}
+
+\begin{beitrag}{Datenmodellierung im CIDOC CRM für Anfänger*innen}{%
+Tanja Thiel\,\orcidlink{0000-0002-0123-4567} \\
+\small \href{mailto:tanja.thiel@example.org}{tanja.thiel@example.org} \\
+\small Julius-Maximilians-Universität Würzburg
+}
+
+\section{Worum es geht}
+Das \emph{CIDOC Conceptual Reference Model} (CRM) ist die Referenz-Ontologie für die Modellierung kulturellen Erbes. Seine ereignisorientierte Logik unterscheidet sich grundlegend von der Logik klassischer Sammlungsdatenbanken und ist insbesondere für Einsteiger*innen anfangs ungewohnt. Der vorliegende Workshop richtet sich an Personen, die in den kommenden Monaten ein WissKI-Projekt mit einer CRM-basierten Modellierung beginnen oder die in einem bestehenden Projekt mit den Grundlagen der CRM-Modellierung vertraut werden möchten. Wir verfolgen einen problemorientierten Ansatz: Anhand einer konkreten Sammlung wird die zugrunde liegende Ereignisstruktur Schritt für Schritt erarbeitet.
+
+\section{Methodisches Vorgehen}
+Im ersten Modul des Workshops werden wir uns mit der charakteristischen \emph{Ereignisorientierung} des CIDOC CRM auseinandersetzen. Während eine relationale Sammlungsdatenbank typischerweise Objekte mit unmittelbar zugeordneten Attributen modelliert (\glqq Objekt X wurde 1842 in Paris hergestellt\grqq{}), modelliert CRM ein Herstellungsereignis als eigenständige Entität, die mit Ort, Zeit, Akteur*innen und dem hergestellten Objekt verknüpft ist. Dieser Perspektivwechsel ist die wichtigste konzeptuelle Hürde, die im Workshop überwunden werden muss.
+
+Im zweiten Modul werden wir auf einen Beispieldatensatz schauen, der für Workshop-Zwecke aus einer realen kunsthistorischen Sammlung abgeleitet wurde. Wir analysieren gemeinsam, welche Ereignisse, Akteur*innen, Objekte und Zeiten in den Datensätzen impliziert sind, und übersetzen die Erkenntnisse in eine CRM-konforme Modellierung. Die fachliche Vorgehensweise orientiert sich dabei an der einschlägigen Einführungsliteratur \cite{thiel2024-crm-einfuehrung}.
+
+\section{Konkrete Modellierungsbeispiele}
+Im dritten Modul werden wir vier exemplarische Modellierungsfälle gemeinsam durcharbeiten:
+
+Erstens die \emph{Provenienz eines Sammlungsobjekts}: Wir lernen, eine Folge von Besitzwechseln, Erwerbungsereignissen und Schenkungen so zu modellieren, dass sich die vollständige Provenienzkette über SPARQL rekonstruieren lässt.
+
+Zweitens die \emph{Werkbeziehungen}: Wir modellieren die Beziehungen zwischen einem Werk, einer Reproduktion und einer späteren Bearbeitung, und sehen, wie sich diese Differenzierungen in der Recherche nutzen lassen.
+
+Drittens die \emph{Akteur-Rollen}: Wir untersuchen, wie eine Person in unterschiedlichen Rollen (Hersteller, Auftraggeber, Eigentümer) modelliert werden kann, ohne dass eine künstliche Trennung in der Personenmodellierung erforderlich wird.
+
+Viertens die \emph{komplexen Zeitbezüge}: Wir behandeln Datierungen mit Unsicherheit, Zeitspannen und kalendarische Mehrdeutigkeiten -- ein Themenfeld, das in geisteswissenschaftlichen Sammlungen erfahrungsgemäß besondere Sorgfalt erfordert.
+
+\section{Übergang zur Pathbuilder-Konfiguration}
+Im vierten Modul übersetzen wir die im dritten Modul entwickelten Modellierungsentscheidungen in eine konkrete Konfiguration des WissKI-Pathbuilders. Diese Übersetzungsschritt ist häufig der Moment, in dem Modellierungsentscheidungen revidiert werden, weil sie sich in der Pathbuilder-Logik als unhandlich erweisen. Wir besprechen, welche Designentscheidungen sich in der Praxis bewährt haben und welche typischen Stolpersteine zu beachten sind; vgl.\ \cite{thiel2025-pathbuilder-praxis}.
+
+\section{Materialien und Voraussetzungen}
+Vorausgesetzt werden grundlegende Kenntnisse semantischer Datenmodelle (Klassen, Properties, Individuen). Erfahrung mit dem CIDOC CRM ist ausdrücklich nicht erforderlich -- der Workshop richtet sich gezielt an Einsteiger*innen. Eine vorbereitete WissKI-Testinstanz, eine Beispieldatenbank und sämtliche Workshop-Materialien werden im Vorfeld in einem öffentlichen Git-Repositorium bereitgestellt.
+
+\section{Erwartetes Ergebnis}
+Am Ende des Workshops haben die Teilnehmer*innen ein belastbares Verständnis der ereignisorientierten Modellierung im CIDOC CRM, sie haben mehrere konkrete Modellierungsfälle selbst durchgespielt, und sie sind in der Lage, ihre eigene fachliche Fragestellung in eine erste CRM-konforme Modellierung zu übertragen.
+
+\end{beitrag}

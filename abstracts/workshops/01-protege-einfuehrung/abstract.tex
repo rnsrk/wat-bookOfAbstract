@@ -1,0 +1,32 @@
+\graphicspath{{abstracts/workshops/01-protege-einfuehrung/img/}{img/}}
+
+\begin{beitrag}{Einführung in die Ontologiemodellierung mit Protégé}{%
+Olaf Otten\,\orcidlink{0000-0003-6789-0123} \\
+\small \href{mailto:olaf.otten@example.org}{olaf.otten@example.org} \\
+\small Friedrich-Alexander-Universität Erlangen-Nürnberg
+}
+
+\section{Ziel des Workshops}
+Der Workshop richtet sich an Teilnehmer*innen, die in der Vergangenheit bereits mit WissKI gearbeitet haben oder dies in absehbarer Zeit beabsichtigen, und die jetzt einen vertieften Einblick in die Modellierung der zugrunde liegenden Ontologien gewinnen möchten. Im Zentrum steht die Arbeit mit dem freien Ontologie-Editor \texttt{Protégé}, der sich in den vergangenen Jahren als de-facto-Standardwerkzeug der Ontologie-Community etabliert hat. Wir werden eine kleine, vom CIDOC CRM ausgehende Anwendungsontologie schrittweise gemeinsam aufbauen und sie anschließend in einer realen WissKI-Instanz produktiv nutzen.
+
+\section{Voraussetzungen und Vorbereitung}
+Vorausgesetzt werden Grundkenntnisse in semantischen Datenmodellen (Klassen, Properties, Individuen) und ein grundsätzliches Verständnis dafür, was eine Ontologie von einem relationalen Datenbankschema unterscheidet. Programmiererfahrung ist nicht erforderlich; eine gewisse Vertrautheit mit den fachlichen Inhalten der eigenen Forschungsdomäne hingegen schon, weil wir den Modellierungsprozess am Ende des Workshops auf eine selbst gewählte fachliche Fragestellung übertragen werden. Die Teilnehmer*innen werden gebeten, eine aktuelle Version von Protégé (Version 5.6 oder höher) sowie eine lokale WissKI-Testinstanz vorab zu installieren; eine ausführliche Installationsanleitung wird vier Wochen vor dem Workshop versendet.
+
+\section{Inhaltliche Schwerpunkte}
+Der Workshop gliedert sich in vier Module von je etwa neunzig Minuten Dauer.
+
+Das erste Modul widmet sich der Grundbedienung des Editors. Wir öffnen eine bestehende Beispielontologie, navigieren durch ihre Klassenhierarchie, untersuchen Annotationen und Restriktionen und führen erste einfache Schlussfolgerungen mit dem integrierten Reasoner aus. Ziel des Moduls ist es, eine sichere Orientierung im Werkzeug zu vermitteln, die als Grundlage für die anschließenden Module dient. Die methodische Aufbereitung folgt dabei der einschlägigen Einführungsliteratur \cite{otten2023-protege-handbuch}.
+
+Das zweite Modul behandelt die Erstellung einer eigenen, kleinen Anwendungsontologie. Wir bauen schrittweise eine Modellierung für eine fiktive briefliche Korrespondenz auf -- Personen, Briefe, Orte, Datierungen, Beziehungen -- und reflektieren bei jedem Schritt die ontologischen Entscheidungen, die wir treffen. Besonderes Augenmerk legen wir auf die Frage, wann eine eigene Klasse sinnvoll ist und wann eine Klassifikation über eine bestehende Property ausreicht.
+
+Das dritte Modul fokussiert auf die Anbindung an WissKI. Wir importieren die im zweiten Modul erstellte Ontologie in den WissKI-Pathbuilder, definieren die ersten Pfade, legen Formulare an und erfassen erste Beispieldaten. An dieser Stelle wird sich zeigen, an welchen Stellen die ontologische Modellierung die Datenerfassungspraxis fördert -- und an welchen sie sie behindert. Wir werden gemeinsam überlegen, an welcher Stelle Anpassungen sinnvoll sind und welche grundsätzlichen Designentscheidungen wir am Ende stehen lassen würden.
+
+Das vierte Modul ist ein moderiertes Reflexionsmodul, in dem die Teilnehmer*innen ihre eigene Fragestellung skizzieren und gemeinsam erste Modellierungsschritte erörtern. Wir empfehlen den Teilnehmer*innen, für diesen Teil eine konkrete, real existierende fachliche Aufgabenstellung mitzubringen, an der sie ohnehin arbeiten.
+
+\section{Werkzeuge und Materialien}
+Alle im Workshop verwendeten Materialien -- Beispielontologie, Schritt-für-Schritt-Anleitung, WissKI-Konfiguration -- werden vorab in einem öffentlichen Git-Repositorium bereitgestellt und stehen den Teilnehmer*innen auch nach dem Workshop dauerhaft zur Verfügung. Die Inhalte sind unter CC-BY-Lizenz veröffentlicht und können in eigenen Lehrkontexten weitergenutzt werden \cite{otten2024-workshop-material}.
+
+\section{Erwartetes Ergebnis}
+Am Ende des Workshops sollten die Teilnehmer*innen in der Lage sein, eine eigene kleine Anwendungsontologie zu entwerfen, sie in Protégé umzusetzen, sie in eine WissKI-Instanz zu importieren und erste Daten darauf zu erfassen. Wichtiger als die technische Fertigkeit ist uns dabei die methodische Reflexion: Die Fähigkeit, ontologische Entscheidungen zu begründen, ist die zentrale Kompetenz, die wir im Workshop vermitteln möchten.
+
+\end{beitrag}

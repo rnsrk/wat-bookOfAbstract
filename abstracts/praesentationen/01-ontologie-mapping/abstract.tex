@@ -1,0 +1,28 @@
+\graphicspath{{abstracts/praesentationen/01-ontologie-mapping/img/}{img/}}
+
+\begin{beitrag}{Ontologie-Mapping zwischen CIDOC CRM und FRBRoo in WissKI}{%
+Anke Albrecht\,\orcidlink{0000-0001-2345-6789} \\
+\small \href{mailto:anke.albrecht@example.org}{anke.albrecht@example.org} \\
+\small Friedrich-Alexander-Universität Erlangen-Nürnberg \\[0.5cm]
+Bernd Braun\,\orcidlink{0000-0002-3456-7890} \\
+\small \href{mailto:bernd.braun@example.org}{bernd.braun@example.org} \\
+\small Friedrich-Alexander-Universität Erlangen-Nürnberg
+}
+
+\section{Einleitung}
+Die parallele Erfassung von Ereignissen, Akteur*innen, Objekten und literarischen Werken stellt geisteswissenschaftliche Sammlungsprojekte regelmäßig vor das Problem, dass zwei eng verwandte, aber unterschiedlich modellierte Ontologien gleichzeitig benötigt werden. Während das \emph{CIDOC Conceptual Reference Model} (CRM) als de-facto-Standard für die ereignisorientierte Modellierung kulturellen Erbes etabliert ist, kommt für die Erschließung von Texten, Editionen und Werkfassungen häufig die Erweiterung FRBRoo zum Einsatz. Im Forschungsprojekt \glqq Korrespondenznetze des langen 19.\,Jahrhunderts\grqq{} mussten beide Modelle in einer einzigen WissKI-Instanz produktiv koexistieren -- ein Anwendungsfall, der über die Standardpfade des WissKI-Pathbuilders hinausgeht und systematische Entscheidungen über Klassen-, Property- und Identitätsabbildungen erfordert. Der vorliegende Beitrag dokumentiert die methodischen Grundlagen, die Werkzeugkette und die Erkenntnisse aus zwei Jahren Mapping-Praxis.
+
+\section{Vorgehen}
+Ausgangspunkt unserer Arbeit war eine bereits in CIDOC CRM modellierte Personen- und Ereignisbasis, die im Projektverlauf um die Repräsentation literarischer Werke, ihrer Manifestationen und konkreten Trägerobjekte ergänzt werden musste. Wir haben dazu in einem ersten Schritt diejenigen FRBRoo-Klassen identifiziert, die im Korrespondenzkontext tatsächlich verwendet werden -- im Kern \texttt{F1 Work}, \texttt{F2 Expression}, \texttt{F3 Manifestation Product Type} und \texttt{F4 Manifestation Singleton} -- und ihre Subsumtionsbeziehungen zu CRM-Klassen wie \texttt{E28 Conceptual Object} bzw.\ \texttt{E84 Information Carrier} dokumentiert. Anschließend wurde ein vollständiges Mapping-Dossier erstellt, das pro Klasse und Property die fachliche Begründung, die SPARQL-konforme Definition und die operative Implementierung im WissKI-Pathbuilder festhält. Diese Dokumentation diente sowohl als Diskussionsgrundlage im Projektteam als auch als Übergabedokument für nachfolgende Forschende.
+
+Auf technischer Ebene haben wir die Pfade so angelegt, dass eine konsistente URI-Strategie über beide Ontologien hinweg eingehalten wird. Bestehende CRM-Entitäten werden bei Bedarf um FRBRoo-Klassifikationen ergänzt, ohne ihre Identität zu verändern. Konflikte zwischen scheinbar äquivalenten Properties -- etwa \texttt{P102\_has\_title} (CRM) und \texttt{R3\_is\_realised\_in} (FRBRoo) -- haben wir in einem Mapping-Register zusammengeführt, das durch SHACL-Constraints validiert wird. Eine ausführliche Begründung des Vorgehens findet sich bei \cite{albrecht2024-mapping}.
+
+\section{Ergebnisse und Diskussion}
+Die wichtigste Erkenntnis betrifft die Granularität: Die in der FRBRoo-Literatur vorgeschlagene strikte Trennung von Werk, Expression und Manifestation lässt sich im historischen Korrespondenzkontext nicht immer sauber halten, weil Briefe häufig zugleich Träger, Manifestation und Expression eines einzigen Schreibakts sind. Wir haben uns daher entschieden, an einzelnen Stellen vereinfachte Profile zu definieren, in denen Manifestation und Singleton zu einer Klasse zusammenfallen -- dokumentiert, begründet und damit auch reversibel.
+
+In Bezug auf die WissKI-Werkzeuglandschaft hat sich die Pathbuilder-Oberfläche als robust, aber für komplexe Doppelontologien als unterspezifiziert erwiesen. Wir schlagen daher die Aufnahme einer dedizierten Mapping-Dokumentation als JSON-Sidecar in zukünftige Pathbuilder-Versionen vor. Erste prototypische Implementierungen sind in Abstimmung mit dem WissKI-Kernteam erfolgt und werden im Rahmen des Vortrags demonstriert; vgl.\ auch \cite{braun2025-pathbuilder}.
+
+\section{Fazit}
+Das parallele Modellieren mit CIDOC CRM und FRBRoo ist in WissKI heute praktikabel, erfordert aber eine sorgfältige, projektübergreifend dokumentierte Mapping-Strategie. Wir hoffen, mit unserer Aufbereitung einen Beitrag zur Standardisierung dieser Praxis leisten zu können und freuen uns auf den Austausch mit Projekten, die ähnliche Fragestellungen bearbeiten.
+
+\end{beitrag}

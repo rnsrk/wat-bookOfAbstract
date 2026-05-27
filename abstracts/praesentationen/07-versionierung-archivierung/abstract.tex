@@ -1,0 +1,37 @@
+\graphicspath{{abstracts/praesentationen/07-versionierung-archivierung/img/}{img/}}
+
+\begin{beitrag}{Versionierung und Archivierung in WissKI-basierten Forschungsprojekten}{%
+Mara Möller\,\orcidlink{0000-0001-4567-8901} \\
+\small \href{mailto:mara.moeller@example.org}{mara.moeller@example.org} \\
+\small Eberhard Karls Universität Tübingen \\[0.5cm]
+Nadja Neumann\,\orcidlink{0000-0002-5678-9012} \\
+\small \href{mailto:nadja.neumann@example.org}{nadja.neumann@example.org} \\
+\small Universitäts- und Landesbibliothek Münster
+}
+
+\section{Ausgangsfrage}
+Forschungsdaten, die in WissKI-Projekten entstehen, sind in der Regel das Ergebnis eines langen, iterativen Erschließungsprozesses. Sie werden über Jahre hinweg ergänzt, korrigiert, restrukturiert. Diese Veränderungsdynamik kollidiert mit zwei wachsenden Anforderungen: Erstens dem Anspruch der \emph{Zitierfähigkeit} -- ein Forschungsbeitrag muss auf einen konkreten, reproduzierbaren Zustand einer Datenbasis verweisen können; zweitens dem Anspruch der \emph{Langzeitarchivierung} -- Forschungsdaten sollen nach Projektende über die Dekaden hinweg verfügbar bleiben. Wie sich diese beiden Anforderungen in WissKI-Projekten operativ umsetzen lassen, ist Gegenstand des vorliegenden Beitrags.
+
+\section{Drei Ebenen der Versionierung}
+Wir unterscheiden in unserer Praxis drei Ebenen der Versionierung, die unterschiedliche Aufgaben erfüllen und unterschiedliche Werkzeuge erfordern.
+
+Die erste Ebene ist die \emph{redaktionelle Versionierung}: Jede inhaltliche Änderung an einem WissKI-Datensatz wird über die in Drupal eingebauten Revisionen festgehalten. Diese Ebene ist verlustfrei, aber detailbetont -- sie ist für die Rückverfolgung redaktioneller Entscheidungen geeignet, eignet sich aber nicht als Referenzpunkt für externe Zitationen.
+
+Die zweite Ebene ist die \emph{Schnappschuss-Versionierung}: In definierten Abständen -- in unseren Projekten halbjährlich -- wird der vollständige Triplestore-Inhalt als RDF-Dump exportiert, mit einer DOI versehen und in einem institutionellen Repositorium hinterlegt. Diese Schnappschüsse sind das Mittel der Wahl, um in Publikationen einen konkreten Datenstand zu zitieren. Eine ausführliche Methodendiskussion findet sich bei \cite{moeller2024-snapshots}.
+
+Die dritte Ebene ist die \emph{Archivversion}: Am Ende eines Projektzyklus -- in der Regel nach Förderende -- wird ein eingefrorener, dokumentierter Datensatz erstellt, der den fachlichen Endstand repräsentiert. Diese Version ist nicht mehr veränderbar und ist mit einer ausführlichen Datendokumentation, einer technischen Dokumentation und einer dauerhaften Lizenz versehen.
+
+\section{Werkzeuge und Workflows}
+Für die redaktionelle Versionierung nutzen wir die WissKI-eigenen Drupal-Funktionalitäten ohne nennenswerte Erweiterungen. Für die Schnappschuss-Versionierung haben wir einen Workflow entwickelt, der den Triplestore-Dump zusammen mit einer maschinenlesbaren Schema-Datei, einem READMEt und einem DataCite-konformen Metadatensatz in ein Zenodo-Community-Archiv überführt. Der Workflow ist als Make-getriebene Pipeline implementiert und dokumentiert -- jeder Schnappschuss-Lauf ist damit reproduzierbar und revisionssicher; vgl.\ \cite{neumann2025-archivierung}.
+
+Für die Archivversion arbeiten wir eng mit der lokalen Universitätsbibliothek zusammen, die als institutionelles Langzeit-Archiv fungiert. Die Übergabe folgt einem klar definierten Submission Information Package (SIP), das nicht nur die RDF-Daten enthält, sondern auch eine HTML-basierte Sammlungsdokumentation, Screenshots der wichtigsten Oberflächen und eine technische Beschreibung der WissKI-Umgebung zum Zeitpunkt der Archivierung. Diese Begleitdokumentation hat sich als entscheidend erwiesen: Eine in zwanzig Jahren reaktivierte Datenbasis ist ohne diese Begleitdaten praktisch nicht mehr interpretierbar.
+
+\section{Diskussion}
+Eine wiederkehrende Diskussion in diesem Themenfeld betrifft das Verhältnis von \emph{lebenden} und \emph{eingefrorenen} Daten. In welchem Maß darf ein WissKI-Projekt nach der Archivierung weiterwachsen? Wir vertreten die Auffassung, dass beide Modi möglich sein sollten, sofern die jeweiligen Zustände klar adressierbar sind: Der archivierte Stand bleibt unverändert, die fortlaufende Pflege erzeugt einen separaten, neu zitierbaren Strang.
+
+Ein weiterer Punkt betrifft das Format der Archivierung selbst. Wir empfehlen ausdrücklich, den RDF-Dump in einem gut etablierten Standardformat (Turtle, N-Quads) bereitzustellen und auf proprietäre Triplestore-Exporte zu verzichten.
+
+\section{Fazit}
+Versionierung und Archivierung müssen als kontinuierliche Aufgaben verstanden werden, nicht als Pflichtprogramm am Projektende. Wer diese Aufgaben von Beginn an eingeplant hat, kann am Ende eines Projekts mit überschaubarem Aufwand einen tragfähigen Archivstand abliefern.
+
+\end{beitrag}
