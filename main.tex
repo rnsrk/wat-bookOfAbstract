@@ -61,17 +61,35 @@
 \usepackage{booktabs}
 \usepackage{xurl}
 
-% xstring: liefert \IfBeginWith, das biblatex-chicago für @online-Einträge
-% benötigt, aber selbst nicht lädt.
-\usepackage{xstring}
-
+% Chicago-Stil über das Wrapper-Paket laden (nicht über style=chicago-notes an
+% biblatex direkt): nur so werden xstring und die Sprachzuordnung
+% german -> cms-german.lbx gesetzt, aus der die deutschen Bibstrings
+% ("hrsg. von" statt des rohen Bezeichners "cbyeditor") stammen.
 \usepackage[
+  notes,
   backend=biber,
   language=german,
-  style=chicago-notes,
   sorting=nyt,
   bibencoding=utf8,
-]{biblatex}
+  % --- Anpassungen an CMoS 18. Auflage (Paket implementiert nur die 17.) ---
+  dashed=false,      % 18. Aufl.: Autorname wiederholen statt 3-em-Gedankenstrich
+  maxbibnames=6,     % 18. Aufl.: Bibliografie listet bis zu 6 Namen,
+  minbibnames=3,     %            darüber die ersten 3 + "u.a."
+  maxcitenames=2,    % 18. Aufl.: Fußnote listet bis zu 2 Namen,
+  mincitenames=1,    %            darüber den ersten + "u.a."
+]{biblatex-chicago}
+
+% Verlagsort weglassen (Vorgabe der Organisation; nach CMoS 18 zulässig, da der
+% Ort dort nicht mehr gefordert wird). Der Sourcemap-Eingriff entfernt das Feld
+% bereits beim Einlesen, wirkt also in Fußnoten und Bibliografie gleichermaßen.
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map{
+      \step[fieldset=location, null]
+      \step[fieldset=address, null]
+    }
+  }
+}
 
 % Bibliografien je Abstract: jede .bib wird global registriert,
 % \begin{refsection} ... \end{refsection} im jeweiligen Abstract sorgt dafür,
