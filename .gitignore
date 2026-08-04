@@ -31,3 +31,6 @@ abstract-template.tex
 
 # Claude Code
 .claude/
+
+# Interne Arbeitsanleitung zur Integration der Einreichungen
+INTEGRATION.md

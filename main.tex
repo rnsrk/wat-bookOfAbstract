@@ -123,13 +123,32 @@
 \renewcommand{\cftpartpagefont}{\sffamily\bfseries}
 \renewcommand{\cftpartdotsep}{\cftnodots}
 \renewcommand{\cftpartafterpnum}{\vspace{0.4em}}
-% Section-Einträge: Beiträge -- normal, eingerückt, mit Punkten zur Seitenzahl
-\setlength{\cftbeforesecskip}{0.5em}
+% Ein Beitrag belegt im Inhaltsverzeichnis zwei Zeilen:
+%   section    = Beitragstitel, fett, ohne Punktführung und ohne Seitenzahl
+%   subsection = Autor*innen, kursiv, mit Punktführung und Seitenzahl
+% Beide teilen sich Einzug und Schriftgröße, damit die Zeilen bündig stehen.
+
+% Zeile 1 -- Beitragstitel
+\setlength{\cftbeforesecskip}{1em}
 \setlength{\cftsecindent}{1.5em}
 \setlength{\cftsecnumwidth}{0pt}
-\renewcommand{\cftsecfont}{\sffamily\small}
-\renewcommand{\cftsecpagefont}{\sffamily\small}
-\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsecfont}{\sffamily\bfseries}
+\renewcommand{\cftsecleader}{\hfill}
+\cftpagenumbersoff{sec}
+
+% Zeile 2 -- Autor*innen. Gleicher Einzug und gleiche Schriftgröße wie der
+% Titel, kein zusätzlicher Abstand nach oben, damit beide Zeilen als Einheit
+% lesbar bleiben.
+\setlength{\cftbeforesubsecskip}{0pt}
+\setlength{\cftsubsecindent}{1.5em}
+\setlength{\cftsubsecnumwidth}{0pt}
+\renewcommand{\cftsubsecfont}{\sffamily\itshape}
+\renewcommand{\cftsubsecpagefont}{\sffamily}
+\renewcommand{\cftsubsecleader}{\cftdotfill{\cftdotsep}}
+
+% etoolbox liefert \ifblank (wird von \beitrag benutzt). Wird ohnehin über
+% biblatex-chicago geladen; hier explizit, damit die Abhängigkeit sichtbar ist.
+\usepackage{etoolbox}
 
 \usepackage{hyperref}
 \hypersetup{%
@@ -139,6 +158,11 @@
   citecolor=black,
   breaklinks=true,
   hypertexnames=false,
+  % Die Autor*innenzeile im Inhaltsverzeichnis nutzt die subsection-Ebene und
+  % teilt sich den Anker mit dem Beitragstitel. Ohne diese Begrenzung erzeugte
+  % hyperref daraus ein redundantes Unterlesezeichen und warnte über den
+  % doppelten Anker. Lesezeichen enden daher auf Titelebene.
+  bookmarksdepth=1,
   pdftitle={Book of Abstracts -- WissKI-Anwender*innentreffen 2026},
   pdfsubject={WissKI-Anwender*innentreffen 2026, Book of Abstracts}%
 }
@@ -227,19 +251,27 @@
 }
 
 % beitrag-Umgebung: kapselt einen einzelnen Abstract.
-%   #1 = Titel, #2 = Autor*innenblock (Name, ORCID, E-Mail, Affiliation -- mit \\)
+%   [#1] = optional: Autor*innennamen als Klartext für das Inhaltsverzeichnis
+%          (z. B. [Anke Albrecht, Bernd Braun]). Fehlt das Argument, entfällt
+%          nur die Autorenzeile im TOC -- die Datei baut weiterhin fehlerfrei.
+%   #2   = Titel
+%   #3   = Autor*innenblock für die Anzeige (Name, ORCID, E-Mail, Affiliation -- mit \\)
 % - Resettet Zähler (section, subsection, ..., figure, table) auf 0.
 % - Setzt \rightmark auf den Titel (Kopfzeile zeigt Kategorie | Titel).
-% - Trägt nur den Titel manuell ins Inhaltsverzeichnis ein und
+% - Trägt Titel und Autorenzeile manuell ins Inhaltsverzeichnis ein und
 %   neutralisiert dann \addcontentsline, damit interne \section{...} usw.
 %   das globale TOC nicht verschmutzen.
 % - Öffnet eine refsection; am Ende wird die abstract-eigene
 %   Bibliografie ausgegeben.
-\newenvironment{beitrag}[2]{%
+\newenvironment{beitrag}[3][]{%
   \clearpage
   \phantomsection
-  \addcontentsline{toc}{section}{#1}%
-  \markright{#1}%
+  \addcontentsline{toc}{section}{#2}%
+  \ifblank{#1}{}{%
+    \addtocontents{toc}{\protect\nopagebreak}%
+    \addcontentsline{toc}{subsection}{#1}%
+  }%
+  \markright{#2}%
   \setcounter{section}{0}%
   \setcounter{subsection}{0}%
   \setcounter{subsubsection}{0}%
@@ -248,9 +280,9 @@
   \setcounter{footnote}{0}%
   \begingroup
     \centering
-    {\Large\sffamily\bfseries #1\par}%
+    {\Large\sffamily\bfseries #2\par}%
     \medskip
-    {\normalsize #2\par}%
+    {\normalsize #3\par}%
   \endgroup
   \vspace{1.5em}
   \let\savedaddcontentsline\addcontentsline
