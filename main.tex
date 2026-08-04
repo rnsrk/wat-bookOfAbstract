@@ -61,13 +61,16 @@
 \usepackage{booktabs}
 \usepackage{xurl}
 
+% xstring: liefert \IfBeginWith, das biblatex-chicago für @online-Einträge
+% benötigt, aber selbst nicht lädt.
+\usepackage{xstring}
+
 \usepackage[
   backend=biber,
   language=german,
-  style=numeric,
+  style=chicago-notes,
   sorting=nyt,
   bibencoding=utf8,
-  natbib=true
 ]{biblatex}
 
 % Bibliografien je Abstract: jede .bib wird global registriert,
@@ -177,7 +180,7 @@
 
 % Bibliografie-Überschrift je Abstract: nicht nummeriert, nicht im TOC
 \defbibheading{abstractbib}[Bibliografie]{%
-  \subsection*{#1}%
+  \section*{#1}%
 }
 
 % \category{Name}: leitet eine neue Kategorie ein (Trennblatt + Kolumnentitel)
