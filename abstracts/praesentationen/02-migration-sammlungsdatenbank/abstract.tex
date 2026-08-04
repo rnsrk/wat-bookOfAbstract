@@ -9,6 +9,10 @@ Daniel Drechsler\,\orcidlink{0000-0001-5678-9012} \\
 \small Humboldt-Universität zu Berlin
 }
 
+\begin{abstract}
+Der Beitrag berichtet über die Migration einer historisch gewachsenen Sammlungsdatenbank (12.400 Excel-Datensätze, 3.200 OCR-Inhaltsregister und eine externe Provenienz-Datenbank) in eine WissKI-basierte Triple-Store-Lösung, gegliedert in die vier Etappen Datenprofilierung, CRM-Modellierung, ETL-Transformation mit Python und RDFLib sowie SHACL-basierte Qualitätssicherung. Von 12.400 Quelldatensätzen wurden 11.840 vollständig automatisch überführt; alle Migrationsskripte liegen versioniert vor, sodass eine Re-Migration ohne manuelle Eingriffe möglich ist. Die zentrale Erkenntnis lautet: Erst profilieren, dann modellieren, dann transformieren und validieren -- in dieser Reihenfolge ist eine erfolgreiche Migration am verlässlichsten zu bewerkstelligen.
+\end{abstract}
+
 \section{Ausgangslage}
 Sammlungsdatenbanken in kleineren Forschungsinstituten sind häufig historisch gewachsen: Eine erste Aufnahme in einer relationalen Datenbank, eine zweite Erschließung mit Hilfe von Tabellenkalkulationen, eine spätere Anreicherung in einem Wiki -- am Ende liegen die Bestände in drei oder mehr unverbundenen Systemen vor. Im Fall der von uns betreuten Sammlung historischer Druckschriften des 18.\,Jahrhunderts mussten 12\,400 Datensätze aus einem Excel-Bestand, 3\,200 OCR-erfasste Inhaltsregister und eine externe Provenienz-Datenbank in eine konsolidierte, WissKI-basierte Triple-Store-Lösung überführt werden. Der vorliegende Beitrag berichtet über die methodischen Schritte, die Werkzeugkette und die Lehren aus diesem Migrationsprojekt.
 
@@ -47,3 +51,11 @@ Die Migration konnte innerhalb von vierzehn Monaten abgeschlossen werden. 11\,84
 Die Erfahrung des Projekts lässt sich in einer einfachen Faustregel zusammenfassen: \emph{Profilieren, bevor man modelliert; modellieren, bevor man transformiert; validieren, bevor man veröffentlicht.} Die Konsequente Anwendung dieser Reihenfolge -- bei aller Versuchung, schon vorab in das Triple-Store-System hineinzuoptimieren -- hat sich als entscheidender Faktor für den Projekterfolg erwiesen.
 
 \end{beitrag}
+
+\section*{Kurzbiografie(n)}
+
+\subsection*{Clara Castorp}
+Clara Castorp ist Wissenschaftlerin am Heidelberger Zentrum für Digital Humanities und beschäftigt sich seit zehn Jahren mit der Migration historisch gewachsener Sammlungsdatenbanken in semantische Forschungsumgebungen. Sie hat zahlreiche Migrationsprojekte für Sammlungseinrichtungen unterschiedlicher Größenordnung wissenschaftlich begleitet und ist Mitautorin einer einschlägigen Methodendokumentation zur Datenbereinigung in der Sammlungspraxis. Aktuell arbeitet sie an einem Forschungsdatenmanagement-Konzept für historische Wissenschaftssammlungen.
+
+\subsection*{Daniel Drechsler}
+Daniel Drechsler ist Informatiker mit einem Hintergrund in der Wissensrepräsentation und arbeitet als Forschungsdatenmanager an der Humboldt-Universität zu Berlin. Sein Aufgabenfeld umfasst die Begleitung geisteswissenschaftlicher Forschungsprojekte beim Übergang in semantische Datenmodelle. Er entwickelt seit mehreren Jahren ETL-Werkzeuge für die Triple-Store-Migration und hat dazu mehrfach in einschlägigen Foren der digitalen Geisteswissenschaften vorgetragen.

@@ -9,6 +9,10 @@ Bernd Braun\,\orcidlink{0000-0002-3456-7890} \\
 \small Friedrich-Alexander-Universität Erlangen-Nürnberg
 }
 
+\begin{abstract}
+Das Forschungsprojekt "Korrespondenznetze des langen 19. Jahrhunderts" stand vor der Herausforderung, CIDOC CRM und FRBRoo gleichzeitig in einer WissKI-Instanz zu nutzen; dazu wurden relevante FRBRoo-Klassen identifiziert, ihre Subsumtionsbeziehungen zu CRM-Klassen dokumentiert und ein Mapping-Dossier mit SPARQL-konformen Definitionen und Pathbuilder-Implementierungen erstellt. Auf technischer Ebene wurde eine konsistente URI-Strategie über beide Ontologien hinweg umgesetzt und ein SHACL-validiertes Mapping-Register aufgebaut. Die wichtigste Erkenntnis betrifft die Grenzen der strikten FRBRoo-Trennung von Werk, Expression und Manifestation im historischen Korrespondenzkontext; als Reaktion wurden dokumentierte Vereinfachungsprofile definiert, die die ontologischen Entscheidungen nachvollziehbar und reversibel halten.
+\end{abstract}
+
 \section{Einleitung}
 Die parallele Erfassung von Ereignissen, Akteur*innen, Objekten und literarischen Werken stellt geisteswissenschaftliche Sammlungsprojekte regelmäßig vor das Problem, dass zwei eng verwandte, aber unterschiedlich modellierte Ontologien gleichzeitig benötigt werden. Während das \emph{CIDOC Conceptual Reference Model} (CRM) als de-facto-Standard für die ereignisorientierte Modellierung kulturellen Erbes etabliert ist, kommt für die Erschließung von Texten, Editionen und Werkfassungen häufig die Erweiterung FRBRoo zum Einsatz. Im Forschungsprojekt \glqq Korrespondenznetze des langen 19.\,Jahrhunderts\grqq{} mussten beide Modelle in einer einzigen WissKI-Instanz produktiv koexistieren -- ein Anwendungsfall, der über die Standardpfade des WissKI-Pathbuilders hinausgeht und systematische Entscheidungen über Klassen-, Property- und Identitätsabbildungen erfordert. Der vorliegende Beitrag dokumentiert die methodischen Grundlagen, die Werkzeugkette und die Erkenntnisse aus zwei Jahren Mapping-Praxis.
 
@@ -26,3 +30,11 @@ In Bezug auf die WissKI-Werkzeuglandschaft hat sich die Pathbuilder-Oberfläche 
 Das parallele Modellieren mit CIDOC CRM und FRBRoo ist in WissKI heute praktikabel, erfordert aber eine sorgfältige, projektübergreifend dokumentierte Mapping-Strategie. Wir hoffen, mit unserer Aufbereitung einen Beitrag zur Standardisierung dieser Praxis leisten zu können und freuen uns auf den Austausch mit Projekten, die ähnliche Fragestellungen bearbeiten.
 
 \end{beitrag}
+
+\section*{Kurzbiografie(n)}
+
+\subsection*{Anke Albrecht}
+Anke Albrecht ist wissenschaftliche Mitarbeiterin am Lehrstuhl für Digital Humanities der FAU Erlangen-Nürnberg und arbeitet seit über sechs Jahren mit WissKI in unterschiedlichen Forschungskontexten. Ihre Schwerpunkte liegen in der semantischen Modellierung historischer Korrespondenznetze und in der Anbindung an internationale Normdatenanbieter. Aktuell forscht sie zur ontologischen Repräsentation textueller Werkfassungen und ist Mitautorin mehrerer Konfigurationsempfehlungen, die im WissKI-Konsortium für neu startende Projekte abgestimmt werden.
+
+\subsection*{Bernd Braun}
+Bernd Braun ist technischer Koordinator des WissKI-Konsortiums an der FAU Erlangen-Nürnberg. Seine Schwerpunkte liegen in der Weiterentwicklung des WissKI-Pathbuilders, in der Konfiguration und Inbetriebnahme produktiver Installationen sowie in der Unterstützung neu startender Projekte. Er war an der Entwicklung der aktuellen WissKI-Konfigurationsvorlage maßgeblich beteiligt und engagiert sich in der Open-Source-Pflege des WissKI-Quellcodes.

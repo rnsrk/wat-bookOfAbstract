@@ -9,6 +9,10 @@ Hannes Hauser\,\orcidlink{0000-0002-9012-3456} \\
 \small Technische Universität Dresden
 }
 
+\begin{abstract}
+Der Beitrag berichtet über Aufbau und Betrieb stabiler, öffentlich zugänglicher SPARQL-Endpunkte für vier WissKI-Projekte über drei Jahre: Die Architektur trennt die redaktionelle WissKI-Instanz strikt vom Veröffentlichungsindex (NGINX, OpenLink Virtuoso, Apache Airflow), der automatisch mit VoID-Beschreibungen und DataCite-konformen Metadaten versehen wird. Das Service-Modell kommuniziert Verfügbarkeit als "best effort with disclosure" und überwacht kritische Schwellenwerte mit Prometheus. Nach drei Betriebsjahren zeigt sich, dass SPARQL-Endpunkte ebenso als didaktisches Werkzeug wie als Forschungsschnittstelle genutzt werden und der Aufwand für den Eigenbetrieb geringer ist als oft angenommen.
+\end{abstract}
+
 \section{Motivation}
 Mit dem zunehmenden Einsatz semantischer Datenmodelle in der geisteswissenschaftlichen Forschung wird die Frage der Nachnutzbarkeit dringlicher. Datenexporte als CSV oder XML können zwar vollständig sein, sie sind aber statisch, verlieren ihre semantische Tiefe und sind nach wenigen Jahren häufig nicht mehr aktuell. Ein vom Projekt selbst betriebener SPARQL-Endpunkt verspricht eine Alternative: Forschungsdaten bleiben in ihrer ursprünglichen Modellierung, sind über Standardschnittstellen abfragbar und können auch von Dritten in eigenen Forschungskontexten verknüpft werden. Vor diesem Hintergrund haben wir im Verlauf der vergangenen drei Jahre für vier WissKI-Projekte stabile, öffentlich zugängliche SPARQL-Endpunkte aufgebaut und in einer institutionellen Infrastruktur konsolidiert.
 
@@ -29,3 +33,11 @@ Nach drei Betriebsjahren ergibt sich folgendes Bild: Die Endpunkte werden überw
 SPARQL-Endpunkte sind ein lohnender Baustein der eigenen Forschungsdateninfrastruktur, wenn sie als Teil einer klar dokumentierten Service-Architektur betrachtet werden. Der Aufwand ist überschaubar, der methodische Mehrwert hoch, und die Hürden für die institutionelle Verstetigung sind geringer, als oftmals angenommen wird.
 
 \end{beitrag}
+
+\section*{Kurzbiografie(n)}
+
+\subsection*{Greta Gärtner}
+Greta Gärtner ist Postdoktorandin an der FAU Erlangen-Nürnberg und Mitglied des WissKI-Konsortiums. Ihre Forschungsschwerpunkte liegen in der Anwendung semantischer Datenmodelle auf museale Sammlungen mit kleinem und mittelgroßem Bestand. Sie hat in mehreren Migrationsprojekten als wissenschaftliche Begleitung mitgewirkt und beschäftigt sich aktuell mit der Schnittstellenanbindung von WissKI-Beständen an Museums-Verbund-Plattformen.
+
+\subsection*{Hannes Hauser}
+Hannes Hauser ist Forschungsdatenmanager am Sächsischen Landesdigitalisierungszentrum an der TU Dresden. Er betreut SPARQL-Endpunkte und Datenpublikations-Workflows für mehrere geisteswissenschaftliche Forschungsprojekte und entwickelt im Rahmen einer Promotionsarbeit ein Monitoring-Framework für die Langzeitstabilität semantischer Forschungsdatendienste.

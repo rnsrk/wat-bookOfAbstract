@@ -9,6 +9,10 @@ Frank Förster\,\orcidlink{0000-0003-7890-1234} \\
 \small Universität zu Köln
 }
 
+\begin{abstract}
+Der Beitrag stellt einen prototypischen Workflow vor, der IIIF-Bildressourcen aus externen Repositorien über eine schlanke Vermittlungsschicht systematisch in ein WissKI-basiertes semantisches Datenmodell integriert: Manifest-Metadaten werden auf CIDOC-CRM-konforme Klassen abgebildet, während aus WissKI-Entitäten dynamisch IIIF-Manifeste erzeugt werden. Die Beispielanwendung verknüpft Bestände aus drei Quellen ausschließlich über externe IIIF-URIs ohne lokale Bildhaltung; als besondere Herausforderungen erwiesen sich die Heterogenität realer IIIF-Manifeste und die Langzeitstabilität externer Endpunkte, weshalb eine projektseitige Resolver-Schicht empfohlen wird. Die entwickelte Architektur wird als Open-Source-Veröffentlichung der Community zugänglich gemacht.
+\end{abstract}
+
 \section{Einleitung}
 Das \emph{International Image Interoperability Framework} (IIIF) hat sich in den vergangenen Jahren als de-facto-Standard für den interoperablen Austausch digitaler Bildressourcen etabliert. Sammlungseinrichtungen stellen ihre Bestände zunehmend über IIIF-konforme Bildserver bereit, während die Forschung darauf aufbauend annotierende, vergleichende und kuratierende Werkzeuge entwickelt. Vor diesem Hintergrund stellt sich für WissKI-basierte Sammlungsprojekte die Frage, wie IIIF-Ressourcen aus externen Repositorien systematisch in das eigene semantische Datenmodell eingebunden werden können -- nicht als bloße Verlinkung, sondern als integraler Bestandteil der Forschungsdaten. Der Beitrag stellt einen prototypischen Workflow vor, der im Kontext eines kunsthistorischen Forschungsprojekts entwickelt und über zwei Jahre produktiv erprobt wurde.
 
@@ -29,3 +33,11 @@ Im Betrieb haben sich zwei Themen als besonders sensibel erwiesen. Erstens die L
 Die Integration von IIIF in WissKI ist auch mit überschaubarem Aufwand möglich und eröffnet erhebliche methodische Mehrwerte für sammlungsbasierte Forschungsprojekte. Die im Vortrag vorgestellte Architektur wird im Rahmen einer Open-Source-Veröffentlichung im laufenden Jahr der Community zugänglich gemacht.
 
 \end{beitrag}
+
+\section*{Kurzbiografie(n)}
+
+\subsection*{Elena Engel}
+Elena Engel ist wissenschaftliche Mitarbeiterin am Institut für Kunstgeschichte der Universität Wien. Ihre Forschungsschwerpunkte liegen im Bereich der digitalen Bildwissenschaft, insbesondere in der Integration von IIIF-basierten Bildrepositorien in semantische Forschungsumgebungen. Sie ist beteiligt an mehreren europäischen Forschungsprojekten zur Interoperabilität kunsthistorischer Bilddatenbestände und engagiert sich in der IIIF-Community in der Arbeitsgruppe \glqq Cultural Heritage\grqq.
+
+\subsection*{Frank Förster}
+Frank Förster ist Bibliothekar an der Universitäts- und Stadtbibliothek Köln und betreut dort den Bereich Digital Humanities. Seine Schwerpunkte liegen in der Lizenzierung digitaler Bildressourcen, in der bibliotheksnahen Anwendung von IIIF und in der semantischen Erschließung historischer Bestände. Er ist Mitherausgeber einer Themenreihe zu Rechtsfragen der digitalen Bildpublikation und engagiert sich in der bibliothekarischen Standardisierungsarbeit.

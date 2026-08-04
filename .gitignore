@@ -26,5 +26,8 @@ main.pdf
 .DS_Store
 Thumbs.db
 
+# Current Version of the main.tex for the template
+abstract-template.tex
+
 # Claude Code
 .claude/
